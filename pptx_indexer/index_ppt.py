@@ -11,6 +11,8 @@ This demonstrates the full PPTX Indexer workflow:
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from pptx_indexer.config import IndexingConfig
 
 # Import indexer components
@@ -21,41 +23,19 @@ from pptx_indexer.plugins.default_plugins import (
     GeminiLLM,
     OpenAILLM,
     PaddleOCR,
+    PytesseractOCR,
     SentenceTransformerEmbedder,
 )
 
-from dotenv import load_dotenv
-import sys
 
-# Load environment variables from .env file in project root
-env_path = Path(__file__).parent.parent / ".env"
-print(f"Looking for .env at: {env_path}")
-print(f".env file exists: {env_path.exists()}")
-
-if not env_path.exists():
-    print(f"ERROR: .env file not found at {env_path}")
-    sys.exit(1)
-
-# Load with override=True to ensure .env values take precedence
-result = load_dotenv(dotenv_path=env_path, override=True)
-print(f"load_dotenv result: {result}")
-
-# Verify environment variables are loaded
-api_key = os.getenv("GOOGLE_API_KEY")
-print(f"GOOGLE_API_KEY loaded: {api_key is not None}")
-if api_key:
-    print(f"API key preview: {api_key[:10]}..." if len(api_key) > 10 else f"API key: {api_key}")
-else:
-    print("ERROR: GOOGLE_API_KEY not found in environment variables")
-    print(f"Available variables: {list(os.environ.keys())[:10]}")  # Print first 10 env vars for debugging
-    sys.exit(1)
-
+# Load environment variables
+load_dotenv()
 
 
 def main():
     """Main example - index a presentation."""
     # ===== Configuration =====
-    PPTX_FILE = "Indexing.ppt"  # Replace with your file
+    PPTX_FILE = "MLIS-102-iii.pptx"  # Replace with your file
     OUTPUT_DIR = "./indexed_output"
 
     # Check if file exists
@@ -67,13 +47,13 @@ def main():
     print("Initializing plugins...")
 
     # LLM for metadata extraction
-    # Using Google Gemini
-    try:
-        llm = GeminiLLM(api_key=api_key, model="gemini-pro")
-        print("✓ Gemini LLM initialized successfully")
-    except Exception as e:
-        print(f"✗ Error initializing Gemini LLM: {e}")
-        raise
+    # Option 1: OpenAI
+    # llm = OpenAILLM(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-3.5-turbo")
+    # Option 2: Google Gemini
+    # llm = GeminiLLM(api_key=os.getenv("GOOGLE_API_KEY"), model="gemini-pro")
+    # Option 3: Big Pickle (GLM-4.6) - FREE for testing
+    # Get your free API key at https://routeway.ai
+    llm = BigPickleLLM(api_key=os.getenv("ROUTEWAY_API_KEY"), model="glm-4.6:free")
 
     # Embedder for semantic search
     embedder = SentenceTransformerEmbedder(model="all-MiniLM-L6-v2")
@@ -82,7 +62,7 @@ def main():
     vector_store = ChromaVectorStore(collection_name="presentation_index")
 
     # OCR for image text extraction
-    ocr = pa()
+    ocr = PaddleOCR(lang="en")
 
     # ===== Create indexer =====
     print("Creating indexer...")

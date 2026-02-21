@@ -286,10 +286,70 @@ class PytesseractOCR:
             return {"text": "", "blocks": []}
 
 
+# ============= PaddleOCR =============
+
+
+class PaddleOCR:
+    """PaddleOCR implementation using PaddlePaddle."""
+
+    def __init__(self, lang: str = "en", use_angle_cls: bool = True):
+        try:
+            from paddleocr import PaddleOCR as Paddle
+
+            self.ocr = Paddle(lang=lang, use_angle_cls=use_angle_cls, show_log=False)
+            logger.info(f"Initialized PaddleOCR: {lang}")
+        except ImportError:
+            raise ImportError("paddlepaddle and paddleocr required: pip install paddlepaddle paddleocr")
+
+    def extract_text(self, image_path: str) -> str:
+        """Extract text from image."""
+        try:
+            result = self.ocr.ocr(image_path, cls=True)
+            if not result or not result[0]:
+                return ""
+            texts = []
+            for line in result[0]:
+                if line and len(line) >= 2:
+                    texts.append(line[1][0])
+            return "\n".join(texts)
+        except Exception as e:
+            logger.error(f"OCR failed for {image_path}: {e}")
+            return ""
+
+    def extract_text_with_coords(self, image_path: str) -> dict:
+        """Extract text with coordinates."""
+        try:
+            result = self.ocr.ocr(image_path, cls=True)
+            if not result or not result[0]:
+                return {"text": "", "blocks": []}
+
+            blocks = []
+            texts = []
+            for line in result[0]:
+                if line and len(line) >= 2:
+                    bbox = line[0]
+                    text = line[1][0]
+                    texts.append(text)
+                    blocks.append({
+                        "text": text,
+                        "bbox": [int(bbox[0][0]), int(bbox[0][1]), int(bbox[2][0]), int(bbox[2][1])],
+                    })
+
+            return {
+                "text": "\n".join(texts),
+                "blocks": blocks,
+            }
+        except Exception as e:
+            logger.error(f"OCR with coords failed: {e}")
+            return {"text": "", "blocks": []}
+
+
 __all__ = [
     "OpenAILLM",
     "GeminiLLM",
+    "BigPickleLLM",
     "SentenceTransformerEmbedder",
     "ChromaVectorStore",
     "PytesseractOCR",
+    "PaddleOCR",
 ]
