@@ -9,6 +9,7 @@ This demonstrates the full PPTX Indexer workflow:
 """
 
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 from pptx_indexer.config import IndexingConfig
@@ -19,12 +20,15 @@ from pptx_indexer.plugins.default_plugins import (
     ChromaVectorStore,
     GeminiLLM,
     OpenAILLM,
+    GroqLLM,
     PytesseractOCR,
     SentenceTransformerEmbedder,
 )
 
 
 def main():
+    # Load environment variables from .env file
+    load_dotenv()
     """Main example - index a presentation."""
     # ===== Configuration =====
     PPTX_FILE = "sample_presentation.pptx"  # Replace with your file
@@ -39,10 +43,8 @@ def main():
     print("Initializing plugins...")
 
     # LLM for metadata extraction
-    # Option 1: OpenAI
-    # llm = OpenAILLM(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-3.5-turbo")
-    # Option 2: Google Gemini
-    llm = GeminiLLM(api_key=os.getenv("GOOGLE_API_KEY"), model="gemini-pro")
+    # Option 3: Groq
+    llm = GroqLLM(api_key=os.getenv("GROQ_API_KEY"), model="openai/gpt-oss-120b")
 
     # Embedder for semantic search
     embedder = SentenceTransformerEmbedder(model="all-MiniLM-L6-v2")
@@ -62,7 +64,7 @@ def main():
         vector_store=vector_store,
         ocr=ocr,
         config=IndexingConfig(
-            enable_ocr=True,
+            enable_ocr=False,
             generate_summaries=True,
             compute_similarity_matrix=True,
         ),

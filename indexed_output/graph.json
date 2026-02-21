@@ -1,0 +1,670 @@
+{
+  "document_title": "Presentation Graph",
+  "total_slides": 9,
+  "nodes": {
+    "615c357c-1858-4954-91d5-bb4f5a12ded7": {
+      "node_id": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "node_type": "slide",
+      "content": {
+        "title": "Classification of Coupling in Software Engineering",
+        "summary": "Classification of Coupling in Software Engineering Data, Stamp, Control, Common, and Content Coupling",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.NEXT": [
+          "5038a7ec-f3e3-4a48-a94d-04c133a86a0a"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+          "69daa611-26d9-42cb-b9af-103f205da2da",
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "5038a7ec-f3e3-4a48-a94d-04c133a86a0a": {
+      "node_id": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "node_type": "slide",
+      "content": {
+        "title": "What is Coupling?",
+        "summary": "What is Coupling? \u2022 Coupling indicates the degree of interdependence between two modules. \u2022 High coupling means modules are heavily interdependent. \u2022 Determined by interface complexity: \u2013 Number of pa",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "615c357c-1858-4954-91d5-bb4f5a12ded7"
+        ],
+        "EdgeType.NEXT": [
+          "54411c27-d508-463d-82eb-fd50dcb2a00e"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "54411c27-d508-463d-82eb-fd50dcb2a00e",
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+          "69daa611-26d9-42cb-b9af-103f205da2da",
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "54411c27-d508-463d-82eb-fd50dcb2a00e": {
+      "node_id": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "node_type": "slide",
+      "content": {
+        "title": "",
+        "summary": "",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "5038a7ec-f3e3-4a48-a94d-04c133a86a0a"
+        ],
+        "EdgeType.NEXT": [
+          "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+          "69daa611-26d9-42cb-b9af-103f205da2da",
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1": {
+      "node_id": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "node_type": "slide",
+      "content": {
+        "title": "Data Coupling",
+        "summary": "Data Coupling \u2022 Two modules communicate by passing elementary data items (int, float, char). \u2022 Data must be problem-related, not control-related. \u2022 Example: A function passing an integer value as a pa",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "54411c27-d508-463d-82eb-fd50dcb2a00e"
+        ],
+        "EdgeType.NEXT": [
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+          "69daa611-26d9-42cb-b9af-103f205da2da",
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "7b2d29a1-4551-4f6c-b91e-606b556d5d79": {
+      "node_id": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "node_type": "slide",
+      "content": {
+        "title": "Stamp Coupling",
+        "summary": "Stamp Coupling \u2022 Two modules communicate using composite data items. \u2022 Example: Records (Pascal) or Structures (C). \u2022 More complex than data coupling.",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1"
+        ],
+        "EdgeType.NEXT": [
+          "69daa611-26d9-42cb-b9af-103f205da2da"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "69daa611-26d9-42cb-b9af-103f205da2da": {
+      "node_id": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "node_type": "slide",
+      "content": {
+        "title": "Control Coupling",
+        "summary": "Control Coupling \u2022 One module controls the execution of another via passed data. \u2022 Example: A flag set in one module and tested in another. \u2022 Leads to tighter interdependence.",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79"
+        ],
+        "EdgeType.NEXT": [
+          "095840ca-c4e2-4feb-b636-1e8cc2b6dc57"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "095840ca-c4e2-4feb-b636-1e8cc2b6dc57": {
+      "node_id": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "node_type": "slide",
+      "content": {
+        "title": "Common Coupling",
+        "summary": "Common Coupling \u2022 Two or more modules share global data. \u2022 High risk of unintended side effects. \u2022 Makes debugging and maintenance harder.",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "69daa611-26d9-42cb-b9af-103f205da2da"
+        ],
+        "EdgeType.NEXT": [
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "d10d7e0c-05e4-4799-8992-c7d53564bddb": {
+      "node_id": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "node_type": "slide",
+      "content": {
+        "title": "Content Coupling",
+        "summary": "Content Coupling \u2022 One module directly uses or modifies code of another. \u2022 Example: Jumps into another module\u2019s code. \u2022 Not supported in modern high-level languages (e.g., C). \u2022 Highest degree of coup",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "095840ca-c4e2-4feb-b636-1e8cc2b6dc57"
+        ],
+        "EdgeType.NEXT": [
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ],
+        "EdgeType.SEMANTICALLY_SIMILAR": [
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    },
+    "f1588c7c-1a8b-4ef8-b814-c763776109f0": {
+      "node_id": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "node_type": "slide",
+      "content": {
+        "title": "Coupling Severity Order",
+        "summary": "Coupling Severity Order \u2022 From least to most severe: 1. Data Coupling 2. Stamp Coupling 3. Control Coupling 4. Common Coupling 5. Content Coupling Higher coupling \u2192 Higher complexity and maintenance c",
+        "keywords": [],
+        "topics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.PREVIOUS": [
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb"
+        ],
+        "EdgeType.BELONGS_TO": [
+          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+        ]
+      }
+    },
+    "f0f7fe79-dea5-43d0-b594-b738a09d1307": {
+      "node_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "node_type": "section",
+      "content": {
+        "title": "Classification of Coupling in Software Engineering",
+        "description": "Data, Stamp, Control, Common, and Content Coupling",
+        "topic": "Classification of Coupling in Software Engineering",
+        "subtopics": []
+      },
+      "embedding": null,
+      "neighbors": {
+        "EdgeType.CONTAINS": [
+          "615c357c-1858-4954-91d5-bb4f5a12ded7",
+          "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+          "54411c27-d508-463d-82eb-fd50dcb2a00e",
+          "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+          "69daa611-26d9-42cb-b9af-103f205da2da",
+          "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        ]
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "target": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "target": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "target": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "target": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "next",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "previous",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "type": "belongs_to",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "contains",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    },
+    {
+      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "type": "semantically_similar",
+      "weight": 1.0,
+      "metadata": {}
+    }
+  ]
+}

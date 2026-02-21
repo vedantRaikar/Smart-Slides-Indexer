@@ -1,13 +1,48 @@
+
 """Default plugins for PPTX Indexer.
 Ready-to-use implementations with popular libraries.
 """
 
-# ============= OpenAI LLM Plugin =============
-
-import logging
 from typing import List
+import logging
 
 logger = logging.getLogger(__name__)
+
+# ============= Groq LLM Plugin =============
+
+class GroqLLM:
+    """Groq LLM implementation using OpenAI client with Groq base_url."""
+
+    def __init__(self, api_key: str, model: str = "openai/gpt-oss-120b", **kwargs):
+        self.api_key = api_key
+        self.model = model
+        self.kwargs = kwargs
+        try:
+            from openai import OpenAI
+            self.client = OpenAI(
+                api_key=api_key,
+                base_url="https://api.groq.com/openai/v1",
+            )
+        except ImportError:
+            raise ImportError("openai package required: pip install openai")
+
+    def generate(self, prompt: str, **kwargs) -> str:
+        temperature = kwargs.get("temperature", 1)
+        max_tokens = kwargs.get("max_tokens", 8192)
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=temperature,
+                max_tokens=max_tokens,
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            logger.error(f"Groq generation failed: {e}")
+            raise
+
+    def batch_generate(self, prompts: List[str], **kwargs) -> List[str]:
+        return [self.generate(prompt, **kwargs) for prompt in prompts]
 
 
 class OpenAILLM:

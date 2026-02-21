@@ -57,6 +57,15 @@ class SlideGraphNode:
             neighbors.update(edge_list)
         return neighbors
 
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "node_id": self.node_id,
+            "node_type": self.node_type,
+            "content": self.content,
+            "embedding": self.embedding,
+            "neighbors": {str(k): v for k, v in self.neighbors.items()},
+        }
+
 
 @dataclass
 class SlideGraph:
