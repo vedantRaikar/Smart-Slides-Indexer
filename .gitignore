@@ -76,3 +76,7 @@ coverage.xml
 *.cover
 *.py,cover
 *.whl
+
+# Add to .gitignore
+~$*.pptx
+*.tmp

@@ -41,6 +41,8 @@ dependencies = [
     "loguru>=0.7.0",
     "onnxruntime>=1.16.0,<1.24", # Compatible with Python 3.10
     "ruff>=0.15.2",
+    "paddleocr>=2.0.0",
+    "paddlepaddle>=2.5.0",
 ]
 
 [project.optional-dependencies]

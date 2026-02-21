@@ -1,23 +1,23 @@
 """Default plugins initialization."""
 
 from .implementations import (
-    BigPickleLLM,
     ChromaVectorStore,
     GeminiLLM,
-    GroqLLM,
     OpenAILLM,
-    PaddleOCR,
     PytesseractOCR,
     SentenceTransformerEmbedder,
+    PaddleOCR,
+    GroqLLM,
+    BigPickleLLM,
 )
 
 __all__ = [
-    "BigPickleLLM",
     "OpenAILLM",
     "GeminiLLM",
-    "GroqLLM",
     "SentenceTransformerEmbedder",
     "ChromaVectorStore",
     "PytesseractOCR",
-    "PaddleOCR",
+    'PaddleOCR',
+    'GroqLLM',
+    'BigPickleLLM',
 ]

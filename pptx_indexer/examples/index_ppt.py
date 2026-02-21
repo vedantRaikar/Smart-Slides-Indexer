@@ -9,6 +9,7 @@ This demonstrates the full PPTX Indexer workflow:
 """
 
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 from pptx_indexer.config import IndexingConfig
@@ -16,46 +17,22 @@ from pptx_indexer.config import IndexingConfig
 # Import indexer components
 from pptx_indexer.pipelines.indexing_pipeline import PPTIndexer
 from pptx_indexer.plugins.default_plugins import (
-    BigPickleLLM,
     ChromaVectorStore,
     GeminiLLM,
     OpenAILLM,
-    PaddleOCR,
+    GroqLLM,
+    PytesseractOCR,
     SentenceTransformerEmbedder,
+    PaddleOCR,
 )
-
-from dotenv import load_dotenv
-import sys
-
-# Load environment variables from .env file in project root
-env_path = Path(__file__).parent.parent / ".env"
-print(f"Looking for .env at: {env_path}")
-print(f".env file exists: {env_path.exists()}")
-
-if not env_path.exists():
-    print(f"ERROR: .env file not found at {env_path}")
-    sys.exit(1)
-
-# Load with override=True to ensure .env values take precedence
-result = load_dotenv(dotenv_path=env_path, override=True)
-print(f"load_dotenv result: {result}")
-
-# Verify environment variables are loaded
-api_key = os.getenv("GOOGLE_API_KEY")
-print(f"GOOGLE_API_KEY loaded: {api_key is not None}")
-if api_key:
-    print(f"API key preview: {api_key[:10]}..." if len(api_key) > 10 else f"API key: {api_key}")
-else:
-    print("ERROR: GOOGLE_API_KEY not found in environment variables")
-    print(f"Available variables: {list(os.environ.keys())[:10]}")  # Print first 10 env vars for debugging
-    sys.exit(1)
-
 
 
 def main():
+    # Load environment variables from .env file
+    load_dotenv()
     """Main example - index a presentation."""
     # ===== Configuration =====
-    PPTX_FILE = "Indexing.ppt"  # Replace with your file
+    PPTX_FILE = "sample_presentation.pptx"  # Replace with your file
     OUTPUT_DIR = "./indexed_output"
 
     # Check if file exists
@@ -67,13 +44,8 @@ def main():
     print("Initializing plugins...")
 
     # LLM for metadata extraction
-    # Using Google Gemini
-    try:
-        llm = GeminiLLM(api_key=api_key, model="gemini-pro")
-        print("✓ Gemini LLM initialized successfully")
-    except Exception as e:
-        print(f"✗ Error initializing Gemini LLM: {e}")
-        raise
+    # Option 3: Groq
+    llm = GroqLLM(api_key=os.getenv("GROQ_API_KEY"), model="openai/gpt-oss-120b")
 
     # Embedder for semantic search
     embedder = SentenceTransformerEmbedder(model="all-MiniLM-L6-v2")
@@ -82,7 +54,7 @@ def main():
     vector_store = ChromaVectorStore(collection_name="presentation_index")
 
     # OCR for image text extraction
-    ocr = pa()
+    ocr = PaddleOCR()
 
     # ===== Create indexer =====
     print("Creating indexer...")

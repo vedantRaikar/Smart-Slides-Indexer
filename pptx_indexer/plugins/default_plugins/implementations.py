@@ -8,6 +8,58 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# ============= Big Pickle (GLM-4.6) LLM Plugin =============
+
+
+class BigPickleLLM:
+    """Big Pickle (GLM-4.6) LLM implementation using OpenAI-compatible API."""
+
+    def __init__(
+        self,
+        api_key: str = None,
+        model: str = "glm-4.6:free",
+        base_url: str = "https://api.routeway.ai/v1",
+        **kwargs,
+    ):
+        self.api_key = api_key
+        self.model = model
+        self.base_url = base_url
+        self.kwargs = kwargs
+        self.client = None
+
+        if not api_key:
+            logger.warning("No API key provided for BigPickleLLM. LLM features will be disabled.")
+            return
+
+        try:
+            from openai import OpenAI
+            self.client = OpenAI(api_key=api_key, base_url=base_url)
+        except ImportError:
+            raise ImportError("openai package required: pip install openai")
+
+        logger.info(f"Initialized Big Pickle LLM: {model}")
+
+    def generate(self, prompt: str, **kwargs) -> str:
+        """Generate text from prompt."""
+        if self.client is None:
+            raise RuntimeError("BigPickleLLM not initialized: no API key provided")
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=kwargs.get("temperature", 0.3),
+                max_tokens=kwargs.get("max_tokens", 512),
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            logger.error(f"Big Pickle generation failed: {e}")
+            raise
+
+    def batch_generate(self, prompts: List[str], **kwargs) -> List[str]:
+        """Generate text for multiple prompts."""
+        return [self.generate(prompt, **kwargs) for prompt in prompts]
+
+
 # ============= Groq LLM Plugin =============
 
 class GroqLLM:
@@ -294,9 +346,9 @@ class PaddleOCR:
 
     def __init__(self, lang: str = "en", use_angle_cls: bool = True):
         try:
-            from paddleocr import PaddleOCR as Paddle
+            from paddleocr import PaddleOCR
 
-            self.ocr = Paddle(lang=lang, use_angle_cls=use_angle_cls, show_log=False)
+            self.ocr = PaddleOCR(lang=lang, use_angle_cls=use_angle_cls)
             logger.info(f"Initialized PaddleOCR: {lang}")
         except ImportError:
             raise ImportError("paddlepaddle and paddleocr required: pip install paddlepaddle paddleocr")

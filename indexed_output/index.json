@@ -1,16 +1,16 @@
 {
-  "document_id": "eda6d6de-2ce6-4885-8b45-dfe98ff4aaa6",
+  "document_id": "142ad554-48b6-41dd-87c3-2af464ba2849",
   "document_title": "sample_presentation",
   "stats": {
     "total_slides": 9,
     "total_sections": 1,
     "total_images": 0,
-    "total_keywords": 59,
-    "total_topics": 4
+    "total_keywords": 58,
+    "total_topics": 0
   },
   "slides": {
-    "615c357c-1858-4954-91d5-bb4f5a12ded7": {
-      "slide_id": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+    "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa": {
+      "slide_id": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
       "slide_number": 1,
       "title": "Classification of Coupling in Software Engineering",
       "subtitle": "Data, Stamp, Control, Common, and Content Coupling",
@@ -19,7 +19,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title Slide",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Classification",
         "Coupling",
@@ -29,23 +29,23 @@
         "Control Coupling",
         "Common Coupling",
         "Content Coupling",
-        "Coupling Types",
-        "Software"
+        "Software",
+        "Engineering"
       ],
       "topics": [],
       "summary": "",
       "learning_objectives": [
-        "Explain the concept of coupling and why it matters in software engineering.",
-        "Identify and describe the five types of coupling: data, stamp, control, common, and content coupling.",
-        "Differentiate between the coupling types based on their impact on module independence and maintainability."
+        "Identify and define the five types of coupling in software engineering: data, stamp, control, common, and content coupling.",
+        "Differentiate between each coupling type based on their characteristics and level of interdependence.",
+        "Explain the impact of each coupling type on software maintainability, modularity, and overall system quality."
       ],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.729079",
-      "updated_at": "2026-02-21T17:10:10.729079"
+      "created_at": "2026-02-21T22:41:11.491523",
+      "updated_at": "2026-02-21T22:41:11.491523"
     },
-    "5038a7ec-f3e3-4a48-a94d-04c133a86a0a": {
-      "slide_id": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+    "e9b2a398-dd48-43fc-9eae-02baf2c54a30": {
+      "slide_id": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
       "slide_number": 2,
       "title": "What is Coupling?",
       "subtitle": null,
@@ -91,7 +91,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Coupling",
         "interdependence",
@@ -106,19 +106,14 @@
       ],
       "topics": [],
       "summary": "",
-      "learning_objectives": [
-        "Define coupling and explain its significance in software design.",
-        "Identify the characteristics and consequences of high coupling between modules.",
-        "Describe how interface complexity, such as the number and complexity of parameters, determines coupling.",
-        "Explain why high coupling makes modules harder to understand, maintain, and develop independently."
-      ],
+      "learning_objectives": [],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.730078",
-      "updated_at": "2026-02-21T17:10:10.730078"
+      "created_at": "2026-02-21T22:41:11.496659",
+      "updated_at": "2026-02-21T22:41:11.496659"
     },
-    "54411c27-d508-463d-82eb-fd50dcb2a00e": {
-      "slide_id": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+    "03d08791-71c5-4c4b-8b31-0ecf0fc1e218": {
+      "slide_id": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
       "slide_number": 3,
       "title": "",
       "subtitle": null,
@@ -127,18 +122,18 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [],
       "topics": [],
       "summary": null,
       "learning_objectives": [],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.731073",
-      "updated_at": "2026-02-21T17:10:10.731073"
+      "created_at": "2026-02-21T22:41:11.496659",
+      "updated_at": "2026-02-21T22:41:11.496659"
     },
-    "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1": {
-      "slide_id": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+    "9997a284-fb89-4da9-83b1-3a7d7ed255e3": {
+      "slide_id": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "slide_number": 4,
       "title": "Data Coupling",
       "subtitle": null,
@@ -166,7 +161,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Data Coupling",
         "modules",
@@ -184,11 +179,11 @@
       "learning_objectives": [],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.731073",
-      "updated_at": "2026-02-21T17:10:10.731073"
+      "created_at": "2026-02-21T22:41:11.496659",
+      "updated_at": "2026-02-21T22:41:11.496659"
     },
-    "7b2d29a1-4551-4f6c-b91e-606b556d5d79": {
-      "slide_id": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+    "191cfeea-18d4-4b81-bd3a-20b16252663b": {
+      "slide_id": "191cfeea-18d4-4b81-bd3a-20b16252663b",
       "slide_number": 5,
       "title": "Stamp Coupling",
       "subtitle": null,
@@ -216,7 +211,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Stamp Coupling",
         "modules",
@@ -229,25 +224,16 @@
         "data coupling",
         "complex"
       ],
-      "topics": [
-        "Stamp Coupling",
-        "Composite Data Items",
-        "Records and Structures (Pascal/C)",
-        "Complexity Compared to Data Coupling"
-      ],
+      "topics": [],
       "summary": "",
-      "learning_objectives": [
-        "Define stamp coupling and explain how it occurs when modules exchange composite data items.",
-        "Identify examples of stamp coupling in programming languages such as Pascal records and C structures.",
-        "Compare stamp coupling with data coupling, highlighting why stamp coupling is considered more complex."
-      ],
+      "learning_objectives": [],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.731073",
-      "updated_at": "2026-02-21T17:10:10.731073"
+      "created_at": "2026-02-21T22:41:11.499396",
+      "updated_at": "2026-02-21T22:41:11.499396"
     },
-    "69daa611-26d9-42cb-b9af-103f205da2da": {
-      "slide_id": "69daa611-26d9-42cb-b9af-103f205da2da",
+    "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5": {
+      "slide_id": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "slide_number": 6,
       "title": "Control Coupling",
       "subtitle": null,
@@ -275,7 +261,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Control Coupling",
         "module",
@@ -283,21 +269,21 @@
         "passed data",
         "flag",
         "interdependence",
-        "tight interdependence",
-        "dependency",
-        "software design",
-        "data flow"
+        "tighter",
+        "controls",
+        "tested",
+        "example"
       ],
       "topics": [],
       "summary": "",
       "learning_objectives": [],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.732078",
-      "updated_at": "2026-02-21T17:10:10.732078"
+      "created_at": "2026-02-21T22:41:11.499396",
+      "updated_at": "2026-02-21T22:41:11.499396"
     },
-    "095840ca-c4e2-4feb-b636-1e8cc2b6dc57": {
-      "slide_id": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+    "84dc4936-d530-4e5c-80c8-e4b63c59ff77": {
+      "slide_id": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "slide_number": 7,
       "title": "Common Coupling",
       "subtitle": null,
@@ -325,33 +311,34 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Common Coupling",
         "modules",
         "global data",
         "unintended side effects",
-        "high risk",
+        "risk",
         "debugging",
         "maintenance",
-        "shared",
-        "coupling",
+        "high risk",
+        "share",
         "side effects"
       ],
       "topics": [],
       "summary": "",
       "learning_objectives": [
         "Define common coupling and recognize its characteristics in software modules.",
-        "Identify the risks and potential unintended side effects associated with common coupling.",
-        "Explain how common coupling complicates debugging and maintenance processes."
+        "Explain the risks associated with common coupling, including unintended side effects.",
+        "Describe how common coupling complicates debugging and maintenance processes.",
+        "Identify strategies to reduce or eliminate common coupling in system design."
       ],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.732078",
-      "updated_at": "2026-02-21T17:10:10.732078"
+      "created_at": "2026-02-21T22:41:11.500444",
+      "updated_at": "2026-02-21T22:41:11.500444"
     },
-    "d10d7e0c-05e4-4799-8992-c7d53564bddb": {
-      "slide_id": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+    "cbe1a40f-20a1-4a39-82c0-8580c75735b1": {
+      "slide_id": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "slide_number": 8,
       "title": "Content Coupling",
       "subtitle": null,
@@ -385,7 +372,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Content Coupling",
         "module",
@@ -401,18 +388,18 @@
       "topics": [],
       "summary": "",
       "learning_objectives": [
-        "Define content coupling and explain how one module directly uses or modifies another module's code.",
+        "Define content coupling and describe how one module directly uses or modifies another module's code.",
         "Identify examples of content coupling, such as jumping into another module\u2019s code.",
         "Explain why content coupling is considered the highest and most undesirable degree of coupling.",
-        "Describe why modern high\u2011level languages (e.g., C) do not support content coupling."
+        "Recognize that modern high\u2011level languages (e.g., C) do not support content coupling."
       ],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.733079",
-      "updated_at": "2026-02-21T17:10:10.733079"
+      "created_at": "2026-02-21T22:41:11.501539",
+      "updated_at": "2026-02-21T22:41:11.501539"
     },
-    "f1588c7c-1a8b-4ef8-b814-c763776109f0": {
-      "slide_id": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+    "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268": {
+      "slide_id": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
       "slide_number": 9,
       "title": "Coupling Severity Order",
       "subtitle": null,
@@ -464,7 +451,7 @@
       "tables": [],
       "notes": null,
       "layout_type": "Title and Content",
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "keywords": [
         "Coupling",
         "Severity",
@@ -474,37 +461,37 @@
         "Control Coupling",
         "Common Coupling",
         "Content Coupling",
-        "complexity",
-        "maintenance cost"
+        "Complexity",
+        "Maintenance"
       ],
       "topics": [],
       "summary": "",
       "learning_objectives": [
-        "Identify and differentiate the five types of coupling: Data, Stamp, Control, Common, and Content coupling.",
+        "Identify and differentiate the five types of coupling: Data, Stamp, Control, Common, and Content.",
         "Rank the coupling types from least to most severe based on the provided order.",
-        "Explain how higher coupling severity increases software complexity and maintenance cost."
+        "Explain how increasing coupling severity impacts software complexity and maintenance cost."
       ],
       "importance_score": 0.5,
       "complexity_score": 0.5,
-      "created_at": "2026-02-21T17:10:10.733079",
-      "updated_at": "2026-02-21T17:10:10.733079"
+      "created_at": "2026-02-21T22:41:11.501539",
+      "updated_at": "2026-02-21T22:41:11.501539"
     }
   },
   "sections": {
-    "f0f7fe79-dea5-43d0-b594-b738a09d1307": {
-      "section_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+    "f143e317-2ec4-4562-9f96-2a1656b97323": {
+      "section_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "title": "Classification of Coupling in Software Engineering",
       "description": "Data, Stamp, Control, Common, and Content Coupling",
       "slide_ids": [
-        "615c357c-1858-4954-91d5-bb4f5a12ded7",
-        "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-        "54411c27-d508-463d-82eb-fd50dcb2a00e",
-        "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-        "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-        "69daa611-26d9-42cb-b9af-103f205da2da",
-        "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-        "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-        "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+        "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+        "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
+        "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+        "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+        "191cfeea-18d4-4b81-bd3a-20b16252663b",
+        "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+        "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+        "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+        "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268"
       ],
       "topic": "Classification of Coupling in Software Engineering",
       "subtopics": [],
@@ -515,19 +502,19 @@
         "Control Coupling",
         "Common Coupling",
         "Content Coupling",
-        "Interdependence",
         "Modules",
+        "Interdependence",
         "Interface Complexity",
         "Parameters",
         "Global Data",
-        "Severity",
+        "Severity Order",
         "Maintainability",
-        "High Coupling",
-        "Low Coupling"
+        "Debugging",
+        "High Coupling"
       ],
       "summary": ""
     }
   },
-  "created_at": "2026-02-21T17:10:56.153024",
-  "updated_at": "2026-02-21T17:10:56.153024"
+  "created_at": "2026-02-21T22:41:45.518555",
+  "updated_at": "2026-02-21T22:41:45.518555"
 }

@@ -2,8 +2,8 @@
   "document_title": "Presentation Graph",
   "total_slides": 9,
   "nodes": {
-    "615c357c-1858-4954-91d5-bb4f5a12ded7": {
-      "node_id": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+    "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa": {
+      "node_id": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
       "node_type": "slide",
       "content": {
         "title": "Classification of Coupling in Software Engineering",
@@ -14,21 +14,22 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.NEXT": [
-          "5038a7ec-f3e3-4a48-a94d-04c133a86a0a"
+          "e9b2a398-dd48-43fc-9eae-02baf2c54a30"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ],
         "EdgeType.SEMANTICALLY_SIMILAR": [
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-          "69daa611-26d9-42cb-b9af-103f205da2da",
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
+          "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+          "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1"
         ]
       }
     },
-    "5038a7ec-f3e3-4a48-a94d-04c133a86a0a": {
-      "node_id": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+    "e9b2a398-dd48-43fc-9eae-02baf2c54a30": {
+      "node_id": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
       "node_type": "slide",
       "content": {
         "title": "What is Coupling?",
@@ -39,25 +40,18 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "615c357c-1858-4954-91d5-bb4f5a12ded7"
+          "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa"
         ],
         "EdgeType.NEXT": [
-          "54411c27-d508-463d-82eb-fd50dcb2a00e"
+          "03d08791-71c5-4c4b-8b31-0ecf0fc1e218"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
-        ],
-        "EdgeType.SEMANTICALLY_SIMILAR": [
-          "54411c27-d508-463d-82eb-fd50dcb2a00e",
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-          "69daa611-26d9-42cb-b9af-103f205da2da",
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ]
       }
     },
-    "54411c27-d508-463d-82eb-fd50dcb2a00e": {
-      "node_id": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+    "03d08791-71c5-4c4b-8b31-0ecf0fc1e218": {
+      "node_id": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
       "node_type": "slide",
       "content": {
         "title": "",
@@ -68,24 +62,26 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "5038a7ec-f3e3-4a48-a94d-04c133a86a0a"
+          "e9b2a398-dd48-43fc-9eae-02baf2c54a30"
         ],
         "EdgeType.NEXT": [
-          "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1"
+          "9997a284-fb89-4da9-83b1-3a7d7ed255e3"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ],
         "EdgeType.SEMANTICALLY_SIMILAR": [
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-          "69daa611-26d9-42cb-b9af-103f205da2da",
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+          "191cfeea-18d4-4b81-bd3a-20b16252663b",
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+          "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+          "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268"
         ]
       }
     },
-    "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1": {
-      "node_id": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+    "9997a284-fb89-4da9-83b1-3a7d7ed255e3": {
+      "node_id": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "node_type": "slide",
       "content": {
         "title": "Data Coupling",
@@ -96,24 +92,22 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "54411c27-d508-463d-82eb-fd50dcb2a00e"
+          "03d08791-71c5-4c4b-8b31-0ecf0fc1e218"
         ],
         "EdgeType.NEXT": [
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79"
+          "191cfeea-18d4-4b81-bd3a-20b16252663b"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ],
         "EdgeType.SEMANTICALLY_SIMILAR": [
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-          "69daa611-26d9-42cb-b9af-103f205da2da",
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1"
         ]
       }
     },
-    "7b2d29a1-4551-4f6c-b91e-606b556d5d79": {
-      "node_id": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+    "191cfeea-18d4-4b81-bd3a-20b16252663b": {
+      "node_id": "191cfeea-18d4-4b81-bd3a-20b16252663b",
       "node_type": "slide",
       "content": {
         "title": "Stamp Coupling",
@@ -124,22 +118,24 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1"
+          "9997a284-fb89-4da9-83b1-3a7d7ed255e3"
         ],
         "EdgeType.NEXT": [
-          "69daa611-26d9-42cb-b9af-103f205da2da"
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ],
         "EdgeType.SEMANTICALLY_SIMILAR": [
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+          "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+          "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268"
         ]
       }
     },
-    "69daa611-26d9-42cb-b9af-103f205da2da": {
-      "node_id": "69daa611-26d9-42cb-b9af-103f205da2da",
+    "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5": {
+      "node_id": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "node_type": "slide",
       "content": {
         "title": "Control Coupling",
@@ -150,22 +146,21 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79"
+          "191cfeea-18d4-4b81-bd3a-20b16252663b"
         ],
         "EdgeType.NEXT": [
-          "095840ca-c4e2-4feb-b636-1e8cc2b6dc57"
+          "84dc4936-d530-4e5c-80c8-e4b63c59ff77"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ],
         "EdgeType.SEMANTICALLY_SIMILAR": [
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1"
         ]
       }
     },
-    "095840ca-c4e2-4feb-b636-1e8cc2b6dc57": {
-      "node_id": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+    "84dc4936-d530-4e5c-80c8-e4b63c59ff77": {
+      "node_id": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "node_type": "slide",
       "content": {
         "title": "Common Coupling",
@@ -176,22 +171,21 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "69daa611-26d9-42cb-b9af-103f205da2da"
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5"
         ],
         "EdgeType.NEXT": [
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb"
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ],
         "EdgeType.SEMANTICALLY_SIMILAR": [
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1"
         ]
       }
     },
-    "d10d7e0c-05e4-4799-8992-c7d53564bddb": {
-      "node_id": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+    "cbe1a40f-20a1-4a39-82c0-8580c75735b1": {
+      "node_id": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "node_type": "slide",
       "content": {
         "title": "Content Coupling",
@@ -202,21 +196,18 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "095840ca-c4e2-4feb-b636-1e8cc2b6dc57"
+          "84dc4936-d530-4e5c-80c8-e4b63c59ff77"
         ],
         "EdgeType.NEXT": [
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
-        ],
-        "EdgeType.SEMANTICALLY_SIMILAR": [
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ]
       }
     },
-    "f1588c7c-1a8b-4ef8-b814-c763776109f0": {
-      "node_id": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+    "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268": {
+      "node_id": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
       "node_type": "slide",
       "content": {
         "title": "Coupling Severity Order",
@@ -227,15 +218,15 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.PREVIOUS": [
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb"
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1"
         ],
         "EdgeType.BELONGS_TO": [
-          "f0f7fe79-dea5-43d0-b594-b738a09d1307"
+          "f143e317-2ec4-4562-9f96-2a1656b97323"
         ]
       }
     },
-    "f0f7fe79-dea5-43d0-b594-b738a09d1307": {
-      "node_id": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+    "f143e317-2ec4-4562-9f96-2a1656b97323": {
+      "node_id": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "node_type": "section",
       "content": {
         "title": "Classification of Coupling in Software Engineering",
@@ -246,422 +237,387 @@
       "embedding": null,
       "neighbors": {
         "EdgeType.CONTAINS": [
-          "615c357c-1858-4954-91d5-bb4f5a12ded7",
-          "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-          "54411c27-d508-463d-82eb-fd50dcb2a00e",
-          "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-          "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-          "69daa611-26d9-42cb-b9af-103f205da2da",
-          "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-          "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-          "f1588c7c-1a8b-4ef8-b814-c763776109f0"
+          "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+          "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
+          "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+          "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+          "191cfeea-18d4-4b81-bd3a-20b16252663b",
+          "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+          "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+          "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+          "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268"
         ]
       }
     }
   },
   "edges": [
     {
-      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
-      "target": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "source": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
+      "target": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "source": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
+      "target": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "source": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+      "target": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+      "target": "191cfeea-18d4-4b81-bd3a-20b16252663b",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-      "target": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+      "target": "191cfeea-18d4-4b81-bd3a-20b16252663b",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
-      "target": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "source": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+      "target": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-      "target": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "source": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+      "target": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+      "target": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
       "type": "next",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "previous",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "615c357c-1858-4954-91d5-bb4f5a12ded7",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "191cfeea-18d4-4b81-bd3a-20b16252663b",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
-      "target": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
+      "source": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
+      "target": "f143e317-2ec4-4562-9f96-2a1656b97323",
       "type": "belongs_to",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "f0f7fe79-dea5-43d0-b594-b738a09d1307",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "f143e317-2ec4-4562-9f96-2a1656b97323",
+      "target": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
       "type": "contains",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "e9b2a398-dd48-43fc-9eae-02baf2c54a30",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "615c357c-1858-4954-91d5-bb4f5a12ded7",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "54411c27-d508-463d-82eb-fd50dcb2a00e",
+      "source": "7e86f6b0-8cfe-43ec-a0b5-7886041a6eaa",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "191cfeea-18d4-4b81-bd3a-20b16252663b",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "5038a7ec-f3e3-4a48-a94d-04c133a86a0a",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "03d08791-71c5-4c4b-8b31-0ecf0fc1e218",
+      "target": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "54411c27-d508-463d-82eb-fd50dcb2a00e",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "9997a284-fb89-4da9-83b1-3a7d7ed255e3",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "69daa611-26d9-42cb-b9af-103f205da2da",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "1be6133e-30ac-4a7f-bcc3-7b8ebbe822a1",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "191cfeea-18d4-4b81-bd3a-20b16252663b",
+      "target": "5d19b0bc-ecec-48af-8d6c-0bf1a0e3a268",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
+      "source": "bec8ac61-0a0c-4fd8-9b3a-ca50f40519b5",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
     },
     {
-      "source": "7b2d29a1-4551-4f6c-b91e-606b556d5d79",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
-      "type": "semantically_similar",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-      "type": "semantically_similar",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "69daa611-26d9-42cb-b9af-103f205da2da",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
-      "type": "semantically_similar",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-      "target": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-      "type": "semantically_similar",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "095840ca-c4e2-4feb-b636-1e8cc2b6dc57",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
-      "type": "semantically_similar",
-      "weight": 1.0,
-      "metadata": {}
-    },
-    {
-      "source": "d10d7e0c-05e4-4799-8992-c7d53564bddb",
-      "target": "f1588c7c-1a8b-4ef8-b814-c763776109f0",
+      "source": "84dc4936-d530-4e5c-80c8-e4b63c59ff77",
+      "target": "cbe1a40f-20a1-4a39-82c0-8580c75735b1",
       "type": "semantically_similar",
       "weight": 1.0,
       "metadata": {}
