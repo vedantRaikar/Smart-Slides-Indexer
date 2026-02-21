@@ -4,6 +4,7 @@ from .implementations import (
     ChromaVectorStore,
     GeminiLLM,
     OpenAILLM,
+    GroqLLM,
     PytesseractOCR,
     SentenceTransformerEmbedder,
 )
@@ -11,6 +12,7 @@ from .implementations import (
 __all__ = [
     "OpenAILLM",
     "GeminiLLM",
+    "GroqLLM",
     "SentenceTransformerEmbedder",
     "ChromaVectorStore",
     "PytesseractOCR",
