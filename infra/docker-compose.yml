@@ -1,0 +1,95 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: infra/Dockerfile.api
+    container_name: ssi-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - LOGGING__LEVEL=DEBUG
+      - VECTOR_STORE__PERSIST_DIRECTORY=/data/chroma
+      - WORKER__ARTIFACTS_PATH=/data/artifacts
+      # Secrets (use docker secrets in production)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - ROUTEWAY_API_KEY=${ROUTEWAY_API_KEY:-}
+    volumes:
+      - ./data:/data
+      - ./.env:/app/.env:ro
+    depends_on:
+      - redis
+    networks:
+      - ssi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  worker:
+    build:
+      context: .
+      dockerfile: infra/Dockerfile.worker
+    container_name: ssi-worker
+    environment:
+      - ENVIRONMENT=development
+      - LOGGING__LEVEL=DEBUG
+      - VECTOR_STORE__PERSIST_DIRECTORY=/data/chroma
+      - WORKER__ARTIFACTS_PATH=/data/artifacts
+      - WORKER__MAX_WORKERS=4
+      - REDIS__ENABLED=true
+      - REDIS__HOST=redis
+      - OCR__ENABLED=true
+      - OCR__PROVIDER=paddleocr
+      # Secrets
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - ROUTEWAY_API_KEY=${ROUTEWAY_API_KEY:-}
+    volumes:
+      - ./data:/data
+      - ./.env:/app/.env:ro
+    depends_on:
+      - redis
+    networks:
+      - ssi-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: ssi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - ssi-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  # Optional: Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ssi-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - ssi-network
+    restart: unless-stopped
+
+networks:
+  ssi-network:
+    driver: bridge
+
+volumes:
+  redis-data:

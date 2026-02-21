@@ -1,0 +1,175 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: smart-slides
+  labels:
+    app.kubernetes.io/name: smart-slides-indexer
+    app.kubernetes.io/component: namespace
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: smart-slides-secrets
+  namespace: smart-slides
+type: Opaque
+stringData:
+  # Add your API keys here or use external secrets operator
+  OPENAI_API_KEY: ""
+  GROQ_API_KEY: ""
+  GOOGLE_API_KEY: ""
+  ROUTEWAY_API_KEY: ""
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smart-slides-config
+  namespace: smart-slides
+data:
+  ENVIRONMENT: "production"
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  LOGGING__LEVEL: "INFO"
+  LOGGING__FORMAT: "json"
+  VECTOR_STORE__PROVIDER: "chroma"
+  VECTOR_STORE__COLLECTION_NAME: "slides"
+  WORKER__MAX_WORKERS: "4"
+  WORKER__RETRY_ATTEMPTS: "3"
+  OCR__ENABLED: "true"
+  OCR__PROVIDER: "paddleocr"
+  METRICS__ENABLE_PROMETHEUS: "true"
+  METRICS__PROMETHEUS_PORT: "9090"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-slides-api
+  namespace: smart-slides
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smart-slides-api
+  template:
+    metadata:
+      labels:
+        app: smart-slides-api
+    spec:
+      containers:
+        - name: api
+          image: smart-slides-indexer/api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - configMapRef:
+                name: smart-slides-config
+            - secretRef:
+                name: smart-slides-secrets
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: smart-slides-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-slides-worker
+  namespace: smart-slides
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smart-slides-worker
+  template:
+    metadata:
+      labels:
+        app: smart-slides-worker
+    spec:
+      containers:
+        - name: worker
+          image: smart-slides-indexer/worker:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: smart-slides-config
+            - secretRef:
+                name: smart-slides-secrets
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: smart-slides-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-slides-api
+  namespace: smart-slides
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+      name: http
+  selector:
+    app: smart-slides-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-slides-api-lb
+  namespace: smart-slides
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+      name: http
+  selector:
+    app: smart-slides-api
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: smart-slides-pvc
+  namespace: smart-slides
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

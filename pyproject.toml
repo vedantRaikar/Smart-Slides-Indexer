@@ -84,6 +84,8 @@ Documentation = "https://pptx-indexer.readthedocs.io"
 Repository = "https://github.com/yourusername/pptx-indexer"
 Issues = "https://github.com/yourusername/pptx-indexer/issues"
 
+[project.scripts]
+
 [tool.setuptools]
 packages = ["pptx_indexer"]
 
