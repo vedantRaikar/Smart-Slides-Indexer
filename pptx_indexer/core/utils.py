@@ -1,31 +1,24 @@
-"""
-Utilities for PPTX indexer.
-"""
+"""Utilities for PPTX indexer."""
 
-import os
 import logging
-from typing import List, Dict, Any
+import os
 from pathlib import Path
 
 
 def setup_logging(level: str = "INFO", log_file: Optional[str] = None) -> None:
     """Setup logging configuration."""
-    import logging
-    
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
-    
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
     # Console handler
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
     console_handler.setLevel(level)
-    
+
     # Root logger
     root_logger = logging.getLogger()
     root_logger.setLevel(level)
     root_logger.addHandler(console_handler)
-    
+
     # File handler
     if log_file:
         file_handler = logging.FileHandler(log_file)
@@ -44,10 +37,10 @@ def validate_pptx_file(file_path: str) -> bool:
     """Validate PowerPoint file exists and has .pptx extension."""
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File not found: {file_path}")
-    
-    if not file_path.lower().endswith('.pptx'):
+
+    if not file_path.lower().endswith(".pptx"):
         raise ValueError(f"File must be .pptx: {file_path}")
-    
+
     return True
 
 
@@ -64,4 +57,4 @@ def truncate_text(text: str, length: int = 100, suffix: str = "...") -> str:
     """Truncate text to specified length."""
     if len(text) <= length:
         return text
-    return text[:length - len(suffix)] + suffix
+    return text[: length - len(suffix)] + suffix

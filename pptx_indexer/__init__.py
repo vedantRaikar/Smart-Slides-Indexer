@@ -1,20 +1,19 @@
-"""
-PPTX Indexer - Complete framework initialization.
-"""
+"""PPTX Indexer - Complete framework initialization."""
 
 from .pipelines.indexing_pipeline import PPTIndexer
 from .pipelines.retrieval_pipeline import PPTRetriever
 from .plugins.default_plugins import (
-    OpenAILLM,
-    SentenceTransformerEmbedder,
     ChromaVectorStore,
+    GeminiLLM,
+    OpenAILLM,
     PytesseractOCR,
+    SentenceTransformerEmbedder,
 )
 from .schemas import (
-    SlideNode,
-    SectionNode,
     DocumentIndex,
+    SectionNode,
     SlideGraph,
+    SlideNode,
 )
 
 __version__ = "1.0.0"
@@ -22,6 +21,7 @@ __all__ = [
     "PPTIndexer",
     "PPTRetriever",
     "OpenAILLM",
+    "GeminiLLM",
     "SentenceTransformerEmbedder",
     "ChromaVectorStore",
     "PytesseractOCR",

@@ -1,5 +1,3 @@
-"""
-Tests module initialization.
-"""
+"""Tests module initialization."""
 
 __all__ = []

@@ -1,14 +1,13 @@
-"""
-Slide graph schema for hierarchical and semantic relationships.
-"""
+"""Slide graph schema for hierarchical and semantic relationships."""
 
-from typing import Dict, List, Tuple, Optional, Any, Set
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Any, Dict, List, Optional, Set
 
 
 class EdgeType(str, Enum):
     """Types of edges in the slide graph."""
+
     NEXT = "next"  # Sequential ordering
     PREVIOUS = "previous"  # Reverse sequential
     BELONGS_TO = "belongs_to"  # Slide belongs to section
@@ -24,6 +23,7 @@ class EdgeType(str, Enum):
 @dataclass
 class GraphEdge:
     """Represents an edge in the slide graph."""
+
     source_id: str
     target_id: str
     edge_type: EdgeType
@@ -43,6 +43,7 @@ class GraphEdge:
 @dataclass
 class SlideGraphNode:
     """Enhanced node representation for graph operations."""
+
     node_id: str
     node_type: str  # 'slide', 'section', 'concept'
     content: Dict[str, Any]
@@ -59,22 +60,21 @@ class SlideGraphNode:
 
 @dataclass
 class SlideGraph:
-    """
-    Graph representation of entire presentation.
+    """Graph representation of entire presentation.
     Supports multi-hop traversal and semantic queries.
     """
-    
+
     # Nodes
     nodes: Dict[str, SlideGraphNode] = field(default_factory=dict)
-    
+
     # Edges
     edges: List[GraphEdge] = field(default_factory=list)
-    
+
     # Metadata
     document_title: str = ""
     document_description: Optional[str] = None
     total_slides: int = 0
-    
+
     # Statistics
     connectivity_matrix: Dict[str, Dict[str, float]] = field(default_factory=dict)
 
@@ -85,7 +85,7 @@ class SlideGraph:
     def add_edge(self, edge: GraphEdge) -> None:
         """Add an edge to graph."""
         self.edges.append(edge)
-        
+
         # Update neighbor tracking
         if edge.source_id in self.nodes:
             if edge.edge_type not in self.nodes[edge.source_id].neighbors:
@@ -113,13 +113,13 @@ class SlideGraph:
 
         while queue:
             current_id, depth = queue.pop(0)
-            
+
             if depth >= max_depth or current_id in visited:
                 continue
-                
+
             visited.add(current_id)
             current_node = self.nodes.get(current_id)
-            
+
             if not current_node:
                 continue
 
@@ -143,16 +143,16 @@ class SlideGraph:
 
         while queue:
             current_id, path = queue.pop(0)
-            
+
             if current_id == target_id:
                 return path
-            
+
             if current_id in visited:
                 continue
-                
+
             visited.add(current_id)
             current_node = self.nodes.get(current_id)
-            
+
             if current_node:
                 for neighbor_list in current_node.neighbors.values():
                     for neighbor_id in neighbor_list:
@@ -168,7 +168,7 @@ class SlideGraph:
     ) -> List[str]:
         """Get slides related to a given slide."""
         related = []
-        
+
         for edge in self.edges:
             if edge.source_id == slide_id:
                 if relation_types is None or edge.edge_type in relation_types:
@@ -181,8 +181,6 @@ class SlideGraph:
         return {
             "document_title": self.document_title,
             "total_slides": self.total_slides,
-            "nodes": {
-                node_id: node.to_dict() for node_id, node in self.nodes.items()
-            },
+            "nodes": {node_id: node.to_dict() for node_id, node in self.nodes.items()},
             "edges": [edge.to_dict() for edge in self.edges],
         }

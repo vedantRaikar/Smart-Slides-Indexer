@@ -1,18 +1,17 @@
-"""
-Document index schema - complete indexed representation.
-"""
+"""Document index schema - complete indexed representation."""
 
-from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Any, Dict, List, Optional
 
-from .slide_node import SlideNode, SectionNode
 from .slide_graph_schema import SlideGraph
+from .slide_node import SectionNode, SlideNode
 
 
 @dataclass
 class DocumentStats:
     """Statistics about the indexed document."""
+
     total_slides: int = 0
     total_sections: int = 0
     total_images: int = 0
@@ -24,42 +23,41 @@ class DocumentStats:
 
 @dataclass
 class DocumentIndex:
-    """
-    Complete hierarchical index of a PowerPoint document.
+    """Complete hierarchical index of a PowerPoint document.
     This is the output of the indexing pipeline.
     """
-    
+
     # Document metadata
     document_id: str
     document_title: str
     document_path: str
-    
+
     # Index components
     slides: Dict[str, SlideNode] = field(default_factory=dict)
     sections: Dict[str, SectionNode] = field(default_factory=dict)
     graph: Optional[SlideGraph] = None
-    
+
     # Multi-resolution indexing
     slide_embeddings: Dict[str, List[float]] = field(default_factory=dict)
     section_embeddings: Dict[str, List[float]] = field(default_factory=dict)
     document_embedding: Optional[List[float]] = None
-    
+
     # Keyword indices
     keyword_to_slides: Dict[str, List[str]] = field(default_factory=dict)
     topic_to_slides: Dict[str, List[str]] = field(default_factory=dict)
     concept_to_slides: Dict[str, List[str]] = field(default_factory=dict)
-    
+
     # Cross-references
     image_references: Dict[str, str] = field(default_factory=dict)  # image_id -> slide_id
     external_references: Dict[str, str] = field(default_factory=dict)
-    
+
     # Similarity matrices
     slide_similarity_matrix: Dict[str, Dict[str, float]] = field(default_factory=dict)
     concept_clusters: Dict[int, List[str]] = field(default_factory=dict)  # cluster_id -> slide_ids
-    
+
     # Statistics
     stats: DocumentStats = field(default_factory=DocumentStats)
-    
+
     # Timeline
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
@@ -101,7 +99,7 @@ class DocumentIndex:
     def build_keyword_index(self) -> None:
         """Rebuild keyword index from slides."""
         self.keyword_to_slides.clear()
-        
+
         for slide_id, slide in self.slides.items():
             for keyword in slide.keywords:
                 keyword_lower = keyword.lower()
@@ -112,7 +110,7 @@ class DocumentIndex:
     def build_topic_index(self) -> None:
         """Rebuild topic index from slides."""
         self.topic_to_slides.clear()
-        
+
         for slide_id, slide in self.slides.items():
             for topic in slide.topics:
                 topic_lower = topic.lower()
@@ -132,12 +130,8 @@ class DocumentIndex:
                 "total_keywords": len(self.keyword_to_slides),
                 "total_topics": len(self.topic_to_slides),
             },
-            "slides": {
-                sid: slide.to_dict() for sid, slide in self.slides.items()
-            },
-            "sections": {
-                sid: section.to_dict() for sid, section in self.sections.items()
-            },
+            "slides": {sid: slide.to_dict() for sid, slide in self.slides.items()},
+            "sections": {sid: section.to_dict() for sid, section in self.sections.items()},
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }
@@ -145,4 +139,5 @@ class DocumentIndex:
     def to_json(self) -> str:
         """Export index to JSON string."""
         import json
+
         return json.dumps(self.to_dict(), indent=2, default=str)

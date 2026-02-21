@@ -1,28 +1,63 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "smart-slides-automl"
+name = "pptx-indexer"
 version = "0.1.0"
-description = "AutoML service for Generative AI - Auto-tuning LLM pipelines"
+description = "Production-grade semantic slide indexing framework for PowerPoint files with LLM-ready graph indexes"
 readme = "README.md"
 requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Vedant Raikar", email = "vedant@example.com"}
+]
+keywords = ["pptx", "indexing", "rag", "llm", "semantic-search", "graph-database"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
+
 dependencies = [
-    "python-pptx>=1.0.2",
-    "langchain>=0.1.0",
+    "python-pptx>=0.6.21",
+    "networkx>=3.0",
     "pydantic>=2.0.0",
-    "python-dotenv>=1.0.0",
+    "pydantic-settings>=2.0.0",
     "openai>=1.0.0",
     "anthropic>=0.7.0",
     "google-generativeai>=0.3.0",
-    "aiohttp>=3.9.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic-settings>=2.0.0",
-    "tenacity>=8.2.0",
-    "loguru>=0.7.0",
+    "sentence-transformers>=2.2.0",
+    "chromadb>=0.3.0",
+    "pytesseract>=0.3.10",
+    "Pillow>=9.0.0",
+    "python-dotenv>=0.21.0",
     "numpy>=1.24.0",
-    "fastapi>=0.129.0",
-    "uvicorn>=0.41.0",
+    "loguru>=0.7.0",
+    "onnxruntime>=1.16.0,<1.24", # Compatible with Python 3.10
+    "ruff>=0.15.2",
 ]
 
 [project.optional-dependencies]
+llm-providers = [
+    "mistralai>=0.0.7",
+    "replicate>=0.12.0",
+]
+
+vector-stores = [
+    "pinecone-client>=2.2.0",
+    "weaviate-client>=3.20.0",
+]
+
+graph-db = [
+    "neo4j>=5.0.0",
+]
+
 dev = [
     "pytest>=7.4.0",
     "pytest-asyncio>=0.21.0",
@@ -31,3 +66,44 @@ dev = [
     "ruff>=0.1.0",
     "mypy>=1.5.0",
 ]
+
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=1.3.0",
+]
+
+all = [
+    "pptx-indexer[llm-providers,vector-stores,graph-db,dev,docs]",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pptx-indexer"
+Documentation = "https://pptx-indexer.readthedocs.io"
+Repository = "https://github.com/yourusername/pptx-indexer"
+Issues = "https://github.com/yourusername/pptx-indexer/issues"
+
+[tool.setuptools]
+packages = ["pptx_indexer"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "W", "I", "N", "D"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=pptx_indexer --cov-report=html --cov-report=term-missing"

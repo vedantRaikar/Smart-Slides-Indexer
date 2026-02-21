@@ -1,4 +1,5 @@
 """Pipelines module initialization."""
+
 from .indexing_pipeline import PPTIndexer
 from .retrieval_pipeline import PPTRetriever, RetrievalResult
 
