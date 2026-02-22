@@ -3,11 +3,14 @@
 import logging
 import os
 from pathlib import Path
+from typing import Optional
 
 
 def setup_logging(level: str = "INFO", log_file: Optional[str] = None) -> None:
     """Setup logging configuration."""
-    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
 
     # Console handler
     console_handler = logging.StreamHandler()

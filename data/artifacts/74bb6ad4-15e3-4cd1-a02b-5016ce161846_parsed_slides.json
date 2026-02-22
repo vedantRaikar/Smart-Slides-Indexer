@@ -1,0 +1,243 @@
+[
+  {
+    "slide_number": 1,
+    "slide_id": "fbdfa5ee-4bec-4ace-8166-097548cabb26",
+    "title": "Classification of Coupling in Software Engineering",
+    "bullets": [
+      {
+        "text": "Classification of Coupling in Software Engineering",
+        "level": 0
+      },
+      {
+        "text": "Data, Stamp, Control, Common, and Content Coupling",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 2,
+    "slide_id": "2f4a7d9f-1fd7-4f0e-b0d1-2d375a358d76",
+    "title": "What is Coupling?",
+    "bullets": [
+      {
+        "text": "What is Coupling?",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Coupling indicates the degree of interdependence between two modules.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 High coupling means modules are heavily interdependent.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Determined by interface complexity:",
+        "level": 0
+      },
+      {
+        "text": "   \u2013 Number of parameters passed",
+        "level": 0
+      },
+      {
+        "text": "   \u2013 Complexity of parameters",
+        "level": 0
+      },
+      {
+        "text": "\u2022 High coupling \u2192 harder to understand, maintain, and develop independently.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 3,
+    "slide_id": "17db7ae1-a46f-4cc6-9b10-8cbfa2ca132e",
+    "title": "",
+    "bullets": [],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 4,
+    "slide_id": "388fcdcc-eb13-49fd-b73e-fd3fc50bc94e",
+    "title": "Data Coupling",
+    "bullets": [
+      {
+        "text": "Data Coupling",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Two modules communicate by passing elementary data items (int, float, char).",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Data must be problem-related, not control-related.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Example: A function passing an integer value as a parameter.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 5,
+    "slide_id": "6e8d8477-9e97-4628-b188-c42abd3a59ca",
+    "title": "Stamp Coupling",
+    "bullets": [
+      {
+        "text": "Stamp Coupling",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Two modules communicate using composite data items.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Example: Records (Pascal) or Structures (C).",
+        "level": 0
+      },
+      {
+        "text": "\u2022 More complex than data coupling.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 6,
+    "slide_id": "023375e1-fe07-4fea-896d-484ebaff3500",
+    "title": "Control Coupling",
+    "bullets": [
+      {
+        "text": "Control Coupling",
+        "level": 0
+      },
+      {
+        "text": "\u2022 One module controls the execution of another via passed data.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Example: A flag set in one module and tested in another.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Leads to tighter interdependence.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 7,
+    "slide_id": "9363359d-ac66-4bad-8188-3118fde44234",
+    "title": "Common Coupling",
+    "bullets": [
+      {
+        "text": "Common Coupling",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Two or more modules share global data.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 High risk of unintended side effects.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Makes debugging and maintenance harder.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 8,
+    "slide_id": "777c040c-3183-4056-8caa-f03510033c7d",
+    "title": "Content Coupling",
+    "bullets": [
+      {
+        "text": "Content Coupling",
+        "level": 0
+      },
+      {
+        "text": "\u2022 One module directly uses or modifies code of another.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Example: Jumps into another module\u2019s code.",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Not supported in modern high-level languages (e.g., C).",
+        "level": 0
+      },
+      {
+        "text": "\u2022 Highest degree of coupling, most undesirable.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  },
+  {
+    "slide_number": 9,
+    "slide_id": "a1c02948-fcef-4680-82f8-81470ccbd6bb",
+    "title": "Coupling Severity Order",
+    "bullets": [
+      {
+        "text": "Coupling Severity Order",
+        "level": 0
+      },
+      {
+        "text": "\u2022 From least to most severe:",
+        "level": 0
+      },
+      {
+        "text": "   1. Data Coupling",
+        "level": 0
+      },
+      {
+        "text": "   2. Stamp Coupling",
+        "level": 0
+      },
+      {
+        "text": "   3. Control Coupling",
+        "level": 0
+      },
+      {
+        "text": "   4. Common Coupling",
+        "level": 0
+      },
+      {
+        "text": "   5. Content Coupling",
+        "level": 0
+      },
+      {
+        "text": "Higher coupling \u2192 Higher complexity and maintenance cost.",
+        "level": 0
+      }
+    ],
+    "images": [],
+    "tables": [],
+    "notes": ""
+  }
+]
