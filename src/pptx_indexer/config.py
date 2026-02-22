@@ -14,7 +14,9 @@ from pydantic_settings import BaseSettings
 class LLMConfig(BaseSettings):
     """LLM provider configuration."""
 
-    provider: str = Field(default="groq", description="LLM provider: openai, groq, bigpickle, gemini")
+    provider: str = Field(
+        default="groq", description="LLM provider: openai, groq, bigpickle, gemini"
+    )
     api_key: Optional[str] = Field(default=None, description="LLM API key")
     model: str = Field(default="llama-3.1-70b-versatile", description="Model name")
     temperature: float = Field(default=0.3, description="Default temperature")
@@ -37,9 +39,13 @@ class EmbedderConfig(BaseSettings):
 class VectorStoreConfig(BaseSettings):
     """Vector store configuration."""
 
-    provider: str = Field(default="chroma", description="Vector store provider: chroma, qdrant, pinecone")
+    provider: str = Field(
+        default="chroma", description="Vector store provider: chroma, qdrant, pinecone"
+    )
     collection_name: str = Field(default="slides", description="Default collection name")
-    persist_directory: Optional[str] = Field(default="./data/chroma", description="Chroma persist directory")
+    persist_directory: Optional[str] = Field(
+        default="./data/chroma", description="Chroma persist directory"
+    )
     distance_metric: str = Field(default="cosine", description="Distance metric")
 
 
@@ -60,7 +66,9 @@ class WorkerConfig(BaseSettings):
     retry_backoff: float = Field(default=1.0, description="Exponential backoff base")
     job_timeout: int = Field(default=600, description="Job timeout in seconds")
     idempotency_enabled: bool = Field(default=True, description="Enable idempotent processing")
-    artifacts_path: str = Field(default="./data/artifacts", description="Intermediate artifacts path")
+    artifacts_path: str = Field(
+        default="./data/artifacts", description="Intermediate artifacts path"
+    )
 
 
 class LoggingConfig(BaseSettings):
@@ -96,7 +104,9 @@ class AppConfig(BaseSettings):
 
     # Core settings
     app_name: str = Field(default="smart-slides-indexer", description="Application name")
-    environment: str = Field(default="development", description="Environment: development, staging, production")
+    environment: str = Field(
+        default="development", description="Environment: development, staging, production"
+    )
     debug: bool = Field(default=False, description="Debug mode")
 
     # API settings
@@ -124,7 +134,7 @@ class AppConfig(BaseSettings):
 @lru_cache()
 def get_config() -> AppConfig:
     """Get cached application configuration.
-    
+
     Returns:
         AppConfig: Application configuration singleton
     """
@@ -137,7 +147,7 @@ def get_config() -> AppConfig:
 REQUIRED_ENV_VARS = {
     # At least one of these must be set for LLM functionality
     "OPENAI_API_KEY": "OpenAI API key (if using OpenAI provider)",
-    "GROQ_API_KEY": "Groq API key (if using Groq provider)", 
+    "GROQ_API_KEY": "Groq API key (if using Groq provider)",
     "GOOGLE_API_KEY": "Google API key (if using Gemini provider)",
     "ROUTEWAY_API_KEY": "Routeway API key (if using BigPickle provider)",
 }
@@ -150,41 +160,60 @@ OPTIONAL_ENV_VARS = {
     "LLM__MAX_TOKENS": "Max tokens per request",
     "LLM__BATCH_SIZE": "Batch size for LLM calls",
     "LLM__CACHE_ENABLED": "Enable caching",
-    
     # Embedder settings
     "EMBEDDER__PROVIDER": "Embedder provider",
     "EMBEDDER__MODEL": "Embedding model name",
     "EMBEDDER__BATCH_SIZE": "Batch size for embeddings",
     "EMBEDDER__DEVICE": "Device (cpu, cuda)",
-    
     # Vector store settings
     "VECTOR_STORE__PROVIDER": "Vector store provider",
     "VECTOR_STORE__COLLECTION_NAME": "Collection name",
     "VECTOR_STORE__PERSIST_DIRECTORY": "Persist directory",
-    
     # OCR settings
     "OCR__PROVIDER": "OCR provider (paddleocr, pytesseract)",
     "OCR__ENABLED": "Enable OCR",
     "OCR__LANGUAGES": "OCR languages (comma-separated)",
-    
     # Worker settings
     "WORKER__MAX_WORKERS": "Max parallel workers",
     "WORKER__RETRY_ATTEMPTS": "Max retry attempts",
     "WORKER__IDEMPOTENCY_ENABLED": "Enable idempotent processing",
     "WORKER__ARTIFACTS_PATH": "Intermediate artifacts path",
-    
     # Redis
     "REDIS__ENABLED": "Enable Redis",
     "REDIS__HOST": "Redis host",
     "REDIS__PORT": "Redis port",
-    
     # API
     "API_HOST": "API host",
     "API_PORT": "API port",
-    
     # Observability
     "LOGGING__LEVEL": "Log level",
     "LOGGING__FORMAT": "Log format (json, console)",
     "METRICS__ENABLE_PROMETHEUS": "Enable Prometheus",
     "METRICS__PROMETHEUS_PORT": "Prometheus port",
 }
+
+
+class IndexingConfig:
+    """Simple configuration for indexing pipeline (library use)."""
+
+    llm_model: str = "gpt-3.5-turbo"
+    llm_temperature: float = 0.3
+    llm_max_tokens: int = 512
+    embedding_model: str = "all-MiniLM-L6-v2"
+    embedding_batch_size: int = 32
+    enable_ocr: bool = True
+    ocr_languages: list[str] = ["eng"]
+    enable_image_captions: bool = True
+    caption_model: str = "blip-image-captioning-base"
+    max_workers: int = 4
+    timeout_seconds: int = 300
+    output_format: str = "json"
+    export_embeddings: bool = True
+    export_graph: bool = True
+    enable_chunking: bool = False
+    chunk_size: int = 512
+    chunk_overlap: int = 50
+    compute_similarity_matrix: bool = True
+    cluster_concepts: bool = True
+    max_clusters: int = 10
+    generate_summaries: bool = True

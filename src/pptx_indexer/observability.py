@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 from typing import Any, Dict
 
-from core.config import get_config
+from pptx_indexer.config import get_config
 
 
 class JSONFormatter(logging.Formatter):
@@ -56,9 +56,7 @@ def setup_logging():
         handler.setFormatter(JSONFormatter())
     else:
         handler.setFormatter(
-            logging.Formatter(
-                "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-            )
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         )
 
     logger.addHandler(handler)
@@ -110,16 +108,17 @@ metrics = MetricsCollector()
 
 def trace_function(func):
     """Decorator for tracing function calls."""
+
     def wrapper(*args, **kwargs):
         config = get_config()
-        
+
         if not config.metrics.enable_tracing:
             return func(*args, **kwargs)
-        
+
         # Simple tracing - in production use OpenTelemetry
         logger = logging.getLogger(func.__module__)
         logger.info(f"Entering {func.__name__}")
-        
+
         start_time = datetime.utcnow()
         try:
             result = func(*args, **kwargs)
@@ -130,5 +129,5 @@ def trace_function(func):
             duration = (datetime.utcnow() - start_time).total_seconds()
             logger.error(f"Error in {func.__name__} after {duration:.3f}s: {e}")
             raise
-    
+
     return wrapper

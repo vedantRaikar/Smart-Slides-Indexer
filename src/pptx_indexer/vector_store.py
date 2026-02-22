@@ -19,7 +19,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from core.config import get_config
+from pptx_indexer.config import get_config
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +27,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class SearchResult:
     """Search result with score and metadata."""
+
     id: str
     score: float
     text: str
@@ -47,11 +48,11 @@ class EmbeddingCache:
 
     def get(self, text: str, model: str) -> Optional[List[float]]:
         key = self._get_cache_key(text, model)
-        
+
         # Check memory cache first
         if key in self._memory_cache:
             return self._memory_cache[key]
-        
+
         # Check file cache
         cache_file = self.cache_dir / f"{key}.json"
         if cache_file.exists():
@@ -66,7 +67,7 @@ class EmbeddingCache:
     def set(self, text: str, model: str, embedding: List[float]):
         key = self._get_cache_key(text, model)
         self._memory_cache[key] = embedding
-        
+
         cache_file = self.cache_dir / f"{key}.json"
         cache_file.write_text(json.dumps({"embedding": embedding}))
 
@@ -130,16 +131,16 @@ class ChromaVectorStore(BaseVectorStore):
             path=persist_directory,
             settings=Settings(anonymized_telemetry=False),
         )
-        
+
         self.collection_name = collection_name
         self.distance_metric = distance_metric
-        
+
         # Create or get collection
         self.collection = self.client.get_or_create_collection(
             name=collection_name,
             metadata={"hnsw:space": distance_metric},
         )
-        
+
         logger.info(f"Initialized ChromaVectorStore: {collection_name}")
 
     def add(
@@ -151,12 +152,12 @@ class ChromaVectorStore(BaseVectorStore):
     ):
         if not ids:
             return
-            
+
         meta = metadata or [{}] * len(ids)
-        
+
         # Ensure all IDs are strings
         ids = [str(i) for i in ids]
-        
+
         self.collection.add(
             ids=ids,
             embeddings=embeddings,
@@ -176,17 +177,19 @@ class ChromaVectorStore(BaseVectorStore):
             n_results=top_k,
             where=filter,
         )
-        
+
         search_results = []
         if results["ids"] and results["ids"][0]:
             for i, doc_id in enumerate(results["ids"][0]):
-                search_results.append(SearchResult(
-                    id=doc_id,
-                    score=1 - results["distances"][0][i],  # Convert distance to similarity
-                    text=results["documents"][0][i],
-                    metadata=results["metadatas"][0][i] if results["metadatas"] else {},
-                ))
-        
+                search_results.append(
+                    SearchResult(
+                        id=doc_id,
+                        score=1 - results["distances"][0][i],  # Convert distance to similarity
+                        text=results["documents"][0][i],
+                        metadata=results["metadatas"][0][i] if results["metadatas"] else {},
+                    )
+                )
+
         return search_results
 
     def delete(self, ids: List[str]):
@@ -234,7 +237,7 @@ class QdrantVectorStore(BaseVectorStore):
 
         self.client = QdrantClient(url=url, api_key=api_key, port=port)
         self.collection_name = collection_name
-        
+
         # Create collection if not exists
         try:
             self.client.get_collection(collection_name)
@@ -243,7 +246,7 @@ class QdrantVectorStore(BaseVectorStore):
                 collection_name=collection_name,
                 vectors_config=VectorParams(size=384, distance=Distance.COSINE),
             )
-        
+
         logger.info(f"Initialized QdrantVectorStore: {collection_name}")
 
     def add(
@@ -254,10 +257,10 @@ class QdrantVectorStore(BaseVectorStore):
         metadata: Optional[List[Dict]] = None,
     ):
         from qdrant_client.models import PointStruct
-        
+
         if not ids:
             return
-            
+
         points = [
             PointStruct(
                 id=str(i),
@@ -266,7 +269,7 @@ class QdrantVectorStore(BaseVectorStore):
             )
             for i, emb, txt, meta in zip(ids, embeddings, texts, metadata or [{}] * len(ids))
         ]
-        
+
         self.client.upsert(collection_name=self.collection_name, points=points)
 
     def search(
@@ -276,23 +279,20 @@ class QdrantVectorStore(BaseVectorStore):
         filter: Optional[Dict] = None,
     ) -> List[SearchResult]:
         from qdrant_client.models import Filter, FieldCondition, Match
-        
+
         search_filter = None
         if filter:
             search_filter = Filter(
-                must=[
-                    FieldCondition(key=k, match=Match(value=v))
-                    for k, v in filter.items()
-                ]
+                must=[FieldCondition(key=k, match=Match(value=v)) for k, v in filter.items()]
             )
-        
+
         results = self.client.search(
             collection_name=self.collection_name,
             query_vector=query_embedding,
             limit=top_k,
             query_filter=search_filter,
         )
-        
+
         return [
             SearchResult(
                 id=str(r.id),
@@ -305,7 +305,7 @@ class QdrantVectorStore(BaseVectorStore):
 
     def delete(self, ids: List[str]):
         from qdrant_client.models import Filter, PointIdsList
-        
+
         self.client.delete(
             collection_name=self.collection_name,
             points_selector=PointIdsList(points=ids),
@@ -341,23 +341,25 @@ class VectorStoreFactory:
         **kwargs,
     ) -> BaseVectorStore:
         config = get_config()
-        
+
         provider = provider or config.vector_store.provider
         collection_name = collection_name or config.vector_store.collection_name
-        
+
         stores = {
             "chroma": ChromaVectorStore,
             "qdrant": QdrantVectorStore,
         }
-        
+
         store_class = stores.get(provider.lower())
         if not store_class:
             raise ValueError(f"Unknown vector store provider: {provider}")
-        
+
         if provider == "chroma":
             return store_class(
                 collection_name=collection_name,
-                persist_directory=kwargs.get("persist_directory", config.vector_store.persist_directory),
+                persist_directory=kwargs.get(
+                    "persist_directory", config.vector_store.persist_directory
+                ),
                 distance_metric=kwargs.get("distance_metric", config.vector_store.distance_metric),
             )
         elif provider == "qdrant":
@@ -367,7 +369,7 @@ class VectorStoreFactory:
                 url=kwargs.get("url", "localhost"),
                 port=kwargs.get("port", 6333),
             )
-        
+
         return store_class(collection_name=collection_name, **kwargs)
 
 

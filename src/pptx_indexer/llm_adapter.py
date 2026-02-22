@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from core.config import get_config
+from pptx_indexer.config import get_config
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class LLMResponse:
     """LLM response with metadata."""
+
     text: str
     model: str
     tokens_used: Optional[int] = None
@@ -51,7 +52,7 @@ class LLMCache:
         """Get cached response if available."""
         key = self._get_cache_key(prompt, model, **kwargs)
         cache_file = self.cache_dir / f"{key}.json"
-        
+
         with self._lock:
             if cache_file.exists():
                 try:
@@ -71,7 +72,7 @@ class LLMCache:
         """Store response in cache."""
         key = self._get_cache_key(prompt, response.model, **kwargs)
         cache_file = self.cache_dir / f"{key}.json"
-        
+
         with self._lock:
             data = {
                 "text": response.text,
@@ -116,6 +117,7 @@ class OpenAIAdapter(BaseLLMAdapter):
 
     def __init__(self, api_key: str, model: str = "gpt-3.5-turbo", **kwargs):
         import openai
+
         openai.api_key = api_key
         self._client = openai
         self._model = model
@@ -133,7 +135,7 @@ class OpenAIAdapter(BaseLLMAdapter):
             return LLMResponse(
                 text=response.choices[0].message.content.strip(),
                 model=self._model,
-                tokens_used=response.usage.total_tokens if hasattr(response, 'usage') else None,
+                tokens_used=response.usage.total_tokens if hasattr(response, "usage") else None,
             )
         except Exception as e:
             logger.error(f"OpenAI generation failed: {e}")
@@ -152,6 +154,7 @@ class GroqAdapter(BaseLLMAdapter):
 
     def __init__(self, api_key: str, model: str = "llama-3.1-70b-versatile", **kwargs):
         from openai import OpenAI
+
         self._client = OpenAI(
             api_key=api_key,
             base_url="https://api.groq.com/openai/v1",
@@ -171,7 +174,7 @@ class GroqAdapter(BaseLLMAdapter):
             return LLMResponse(
                 text=response.choices[0].message.content.strip(),
                 model=self._model,
-                tokens_used=response.usage.total_tokens if hasattr(response, 'usage') else None,
+                tokens_used=response.usage.total_tokens if hasattr(response, "usage") else None,
             )
         except Exception as e:
             logger.error(f"Groq generation failed: {e}")
@@ -190,6 +193,7 @@ class GeminiAdapter(BaseLLMAdapter):
 
     def __init__(self, api_key: str, model: str = "gemini-pro", **kwargs):
         import google.generativeai as genai
+
         genai.configure(api_key=api_key)
         self._client = genai
         self._model = model
@@ -204,7 +208,7 @@ class GeminiAdapter(BaseLLMAdapter):
                 generation_config={
                     "temperature": kwargs.get("temperature", 0.3),
                     "max_output_tokens": kwargs.get("max_tokens", 512),
-                }
+                },
             )
             return LLMResponse(
                 text=response.text.strip(),
@@ -237,8 +241,9 @@ class BigPickleAdapter(BaseLLMAdapter):
             self._client = None
             self._model = model
             return
-        
+
         from openai import OpenAI
+
         self._client = OpenAI(api_key=api_key, base_url=base_url)
         self._model = model
         self._kwargs = kwargs
@@ -272,11 +277,11 @@ class BigPickleAdapter(BaseLLMAdapter):
 
 class LLMAdapter:
     """Unified LLM adapter with caching and batching.
-    
+
     Usage:
         adapter = LLMAdapter()
         response = adapter.generate("Explain coupling in software")
-        
+
         # Batch processing
         responses = adapter.batch_generate([
             "What is data coupling?",
@@ -301,21 +306,22 @@ class LLMAdapter:
         **kwargs,
     ):
         config = get_config()
-        
+
         self.provider = provider or config.llm.provider
         self.model = model or config.llm.model
         self.batch_size = batch_size or config.llm.batch_size
-        
+
         # Get API key from environment if not provided
         if not api_key:
             api_key = self._get_api_key(self.provider)
-        
+
         self._adapter = self._create_adapter(api_key, **kwargs)
         self._cache = LLMCache() if cache_enabled and config.llm.cache_enabled else None
 
     def _get_api_key(self, provider: str) -> Optional[str]:
         """Get API key from environment variables."""
         import os
+
         key_map = {
             "openai": "OPENAI_API_KEY",
             "groq": "GROQ_API_KEY",
@@ -329,14 +335,14 @@ class LLMAdapter:
         adapter_class = self.ADAPTERS.get(self.provider.lower())
         if not adapter_class:
             raise ValueError(f"Unknown LLM provider: {self.provider}")
-        
+
         if api_key:
             return adapter_class(api_key=api_key, model=self.model, **kwargs)
-        
+
         # Fallback to BigPickle without key
         if self.provider == "bigpickle":
             return BigPickleAdapter(api_key=None, model=self.model)
-        
+
         raise ValueError(f"API key required for {self.provider}")
 
     def generate(self, prompt: str, **kwargs) -> LLMResponse:
@@ -346,14 +352,14 @@ class LLMAdapter:
             cached = self._cache.get(prompt, self.model, **kwargs)
             if cached:
                 return cached
-        
+
         # Generate
         response = self._adapter.generate(prompt, **kwargs)
-        
+
         # Cache result
         if self._cache:
             self._cache.set(response, prompt, **kwargs)
-        
+
         return response
 
     def batch_generate(
@@ -363,30 +369,30 @@ class LLMAdapter:
         **kwargs,
     ) -> List[LLMResponse]:
         """Generate responses for multiple prompts with optional caching.
-        
+
         Args:
             prompts: List of prompts to process
             use_cache: Whether to check/use cache
             **kwargs: Additional parameters passed to generate
-            
+
         Returns:
             List of LLMResponse objects
         """
         results = []
-        
+
         for prompt in prompts:
             if use_cache and self._cache:
                 cached = self._cache.get(prompt, self.model, **kwargs)
                 if cached:
                     results.append(cached)
                     continue
-            
+
             response = self._adapter.generate(prompt, **kwargs)
             results.append(response)
-            
+
             if use_cache and self._cache:
                 self._cache.set(response, prompt, **kwargs)
-        
+
         return results
 
     @property
