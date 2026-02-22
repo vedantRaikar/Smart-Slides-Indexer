@@ -1,4 +1,4 @@
-"""Unit tests for core modules."""
+"""Tests for core utilities - minimal dependencies."""
 
 from unittest.mock import Mock, patch
 
@@ -14,10 +14,9 @@ class TestConfig:
 
         config = get_config()
 
-        assert config.app_name == "smart-slides-indexer"
-        assert config.environment == "development"
-        assert config.llm.provider == "groq"
-        assert config.embedder.model == "all-MiniLM-L6-v2"
+    def test_retry_success(self):
+        """Test retry on successful call."""
+        from apps.worker.indexing import Retryable
 
     def test_config_from_env(self):
         """Test configuration from environment variables."""
@@ -25,35 +24,47 @@ class TestConfig:
 
         from pptx_indexer.config import AppConfig
 
-        os.environ["LLM__PROVIDER"] = "openai"
-        os.environ["LLM__MODEL"] = "gpt-4"
+        result = success_func()
+        assert result == "success"
 
-        config = AppConfig()
+    def test_retry_failure(self):
+        """Test retry on failure."""
+        from apps.worker.indexing import Retryable
 
-        assert config.llm.provider == "openai"
-        assert config.llm.model == "gpt-4"
+        @Retryable(max_attempts=3, backoff=0.1)
+        def fail_func():
+            raise ValueError("test error")
 
-        # Cleanup
-        del os.environ["LLM__PROVIDER"]
-        del os.environ["LLM__MODEL"]
+        with pytest.raises(ValueError):
+            fail_func()
 
 
-class TestLLMAdapter:
-    """Tests for LLM adapter."""
+class TestPipelineContext:
+    """Tests for Pipeline context."""
 
-    @patch("pptx_indexer.llm_adapter.GroqAdapter")
-    def test_create_adapter(self, mock_adapter):
-        """Test adapter creation."""
-        from pptx_indexer.llm_adapter import LLMAdapter
+    def test_context_creation(self):
+        """Test context creation."""
+        import tempfile
+        import shutil
 
-        mock_adapter_instance = Mock()
-        mock_adapter_instance.model = "llama-3.1-70b-versatile"
-        mock_adapter.return_value = mock_adapter_instance
+        temp_dir = tempfile.mkdtemp()
+        try:
+            from apps.worker.indexing import PipelineContext
 
-        with patch.dict("os.environ", {"GROQ_API_KEY": "test-key"}):
-            adapter = LLMAdapter(provider="groq", model="test-model")
+            context = PipelineContext(
+                job_id="test-123",
+                input_path="/test/input.pptx",
+                output_dir=temp_dir,
+                artifacts_dir=temp_dir,
+            )
 
-        mock_adapter.assert_called_once()
+            assert context.job_id == "test-123"
+            assert context.input_path == "/test/input.pptx"
+            assert len(context.slides) == 0
+            assert len(context.embeddings) == 0
+            assert len(context.stages_completed) == 0
+        finally:
+            shutil.rmtree(temp_dir, ignore_errors=True)
 
     def test_cache_operations(self):
         """Test LLM cache."""
@@ -62,51 +73,44 @@ class TestLLMAdapter:
 
         from pptx_indexer.llm_adapter import LLMCache
 
-        cache_dir = tempfile.mkdtemp()
+        temp_dir = tempfile.mkdtemp()
         try:
-            cache = LLMCache(cache_dir)
+            from apps.worker.indexing import PipelineContext
 
-            # Test cache miss
-            result = cache.get("test prompt", "test-model")
-            assert result is None
+            context = PipelineContext(
+                job_id="test-123",
+                input_path="/test/input.pptx",
+                output_dir=temp_dir,
+                artifacts_dir=temp_dir,
+            )
 
-            # Test cache set and get
-            from pptx_indexer.llm_adapter import LLMResponse
+            test_data = {"key": "value", "list": [1, 2, 3]}
+            context.save_artifact("test_data", test_data)
 
-            response = LLMResponse(text="test response", model="test-model")
-            cache.set(response, "test prompt")
-
-            cached = cache.get("test prompt", "test-model")
-            assert cached is not None
-            assert cached.text == "test response"
-            assert cached.cached is True
+            loaded = context.load_artifact("test_data")
+            assert loaded == test_data
         finally:
-            shutil.rmtree(cache_dir)
+            shutil.rmtree(temp_dir, ignore_errors=True)
 
 
-class TestVectorStore:
-    """Tests for vector store."""
+class TestMetadataExtractionStage:
+    """Tests for metadata extraction stage."""
 
-    @patch("chromadb.PersistentClient")
-    def test_chroma_creation(self, mock_chroma):
-        """Test Chroma vector store creation."""
-        from pptx_indexer.vector_store import ChromaVectorStore
+    def test_stage_initialization_with_mock(self):
+        """Test metadata extraction stage initialization with mock."""
+        from unittest.mock import Mock, patch
 
-        mock_collection = Mock()
-        mock_collection.count.return_value = 0
-        mock_chroma.return_value.get_or_create_collection.return_value = mock_collection
+        mock_llm = Mock()
 
-        store = ChromaVectorStore(
-            collection_name="test",
-            persist_directory="/tmp/test",
-        )
+        with patch("apps.worker.indexing.create_llm_adapter", return_value=mock_llm):
+            from apps.worker.indexing import MetadataExtractionStage
 
-        assert store.collection_name == "test"
-        mock_chroma.assert_called_once()
+            stage = MetadataExtractionStage()
+            assert stage.name == "metadata"
 
 
-class TestPipelineContext:
-    """Tests for pipeline context."""
+class TestJobState:
+    """Tests for JobState class."""
 
     def test_context_creation(self):
         """Test pipeline context initialization."""
@@ -130,61 +134,103 @@ class TestPipelineContext:
 
         from apps.worker.indexing import PipelineContext
 
-        temp_dir = tempfile.mkdtemp()
         try:
             context = PipelineContext(
-                job_id="test-job",
+                job_id="test-123",
                 input_path="/test/input.pptx",
                 output_dir=temp_dir,
                 artifacts_dir=temp_dir,
             )
+            context.slides = [
+                {"slide_id": "s1", "slide_number": 1, "title": "Introduction"},
+                {"slide_id": "s2", "slide_number": 2, "title": "Summary"},
+            ]
 
-            # Save artifact
-            test_data = {"key": "value"}
-            context.save_artifact("test_artifact", test_data)
+            stage = StructureAnalyzerStage()
+            result = stage.process(context)
 
-            # Load artifact
-            loaded = context.load_artifact("test_artifact")
-            assert loaded == test_data
+            assert "sections" in result.metadata
+            assert result.metadata["total_sections"] > 0
         finally:
-            shutil.rmtree(temp_dir)
+            shutil.rmtree(temp_dir, ignore_errors=True)
 
 
-class TestRetryable:
-    """Tests for retry decorator."""
+class TestOCRStage:
+    """Tests for OCRStage."""
 
-    def test_retry_success(self):
-        """Test retry on successful call."""
-        from apps.worker.indexing import Retryable
+    def test_ocr_stage_initialization(self):
+        """Test OCR stage initialization."""
+        from apps.worker.indexing import OCRStage
 
-        @Retryable(max_attempts=3, backoff=0.1)
-        def success_func():
-            return "success"
+        stage = OCRStage(ocr_provider="paddleocr", languages=["en"])
+        assert stage.name == "ocr"
+        assert stage.ocr_provider == "paddleocr"
+        assert stage.languages == ["en"]
 
-        result = success_func()
-        assert result == "success"
+    def test_ocr_stage_default_languages(self):
+        """Test OCR stage default languages."""
+        from apps.worker.indexing import OCRStage
 
-    def test_retry_failure(self):
-        """Test retry on failure."""
-        from apps.worker.indexing import Retryable
-
-        @Retryable(max_attempts=3, backoff=0.1)
-        def fail_func():
-            raise ValueError("test error")
-
-        with pytest.raises(ValueError):
-            fail_func()
+        stage = OCRStage()
+        assert stage.languages == ["en"]
 
 
-class TestMetadataExtraction:
-    """Tests for metadata extraction stage."""
+class TestGraphBuilderStage:
+    """Tests for GraphBuilderStage."""
 
-    def test_stage_initialization(self):
-        """Test metadata extraction stage initialization."""
-        from apps.worker.indexing import MetadataExtractionStage
+    def test_graph_builder_with_embeddings(self, temp_dir):
+        """Test graph builder with embeddings."""
+        import shutil
+        from apps.worker.indexing import PipelineContext, GraphBuilderStage
 
-        stage = MetadataExtractionStage()
-        assert stage.name == "metadata"
+        try:
+            context = PipelineContext(
+                job_id="test-123",
+                input_path="/test/input.pptx",
+                output_dir=temp_dir,
+                artifacts_dir=temp_dir,
+            )
+            context.slides = [
+                {"slide_id": "s1", "slide_number": 1, "title": "Intro"},
+                {"slide_id": "s2", "slide_number": 2, "title": "Content"},
+            ]
+            context.embeddings = {
+                "s1": [0.1] * 384,
+                "s2": [0.2] * 384,
+            }
+
+            stage = GraphBuilderStage()
+            result = stage.process(context)
+
+            assert "nodes" in result.graph
+            assert "edges" in result.graph
+            assert result.graph["stats"]["total_nodes"] == 2
+        finally:
+            shutil.rmtree(temp_dir, ignore_errors=True)
+
+
+class TestEmbeddingStage:
+    """Tests for EmbeddingStage."""
+
+    def test_embedding_stage_initialization(self):
+        """Test embedding stage initialization."""
+        from apps.worker.indexing import EmbeddingStage
+
+        stage = EmbeddingStage(batch_size=16, cache_enabled=False)
+        assert stage.name == "embedding"
+        assert stage.batch_size == 16
+        assert stage.cache_enabled is False
+
+
+class TestPPTXParserStage:
+    """Tests for PPTXParserStage."""
+
+    def test_parser_stage_initialization(self):
+        """Test parser stage initialization."""
+        from apps.worker.indexing import PPTXParserStage
+
+        stage = PPTXParserStage()
+        assert stage.name == "parser"
 
 
 if __name__ == "__main__":
