@@ -1,10 +1,9 @@
-
 """Default plugins for PPTX Indexer.
 Ready-to-use implementations with popular libraries.
 """
 
-from typing import List
 import logging
+from typing import List
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +32,7 @@ class BigPickleLLM:
 
         try:
             from openai import OpenAI
+
             self.client = OpenAI(api_key=api_key, base_url=base_url)
         except ImportError:
             raise ImportError("openai package required: pip install openai")
@@ -62,6 +62,7 @@ class BigPickleLLM:
 
 # ============= Groq LLM Plugin =============
 
+
 class GroqLLM:
     """Groq LLM implementation using OpenAI client with Groq base_url."""
 
@@ -71,6 +72,7 @@ class GroqLLM:
         self.kwargs = kwargs
         try:
             from openai import OpenAI
+
             self.client = OpenAI(
                 api_key=api_key,
                 base_url="https://api.groq.com/openai/v1",
@@ -351,7 +353,9 @@ class PaddleOCR:
             self.ocr = PaddleOCR(lang=lang, use_angle_cls=use_angle_cls)
             logger.info(f"Initialized PaddleOCR: {lang}")
         except ImportError:
-            raise ImportError("paddlepaddle and paddleocr required: pip install paddlepaddle paddleocr")
+            raise ImportError(
+                "paddlepaddle and paddleocr required: pip install paddlepaddle paddleocr"
+            )
 
     def extract_text(self, image_path: str) -> str:
         """Extract text from image."""
@@ -382,10 +386,17 @@ class PaddleOCR:
                     bbox = line[0]
                     text = line[1][0]
                     texts.append(text)
-                    blocks.append({
-                        "text": text,
-                        "bbox": [int(bbox[0][0]), int(bbox[0][1]), int(bbox[2][0]), int(bbox[2][1])],
-                    })
+                    blocks.append(
+                        {
+                            "text": text,
+                            "bbox": [
+                                int(bbox[0][0]),
+                                int(bbox[0][1]),
+                                int(bbox[2][0]),
+                                int(bbox[2][1]),
+                            ],
+                        }
+                    )
 
             return {
                 "text": "\n".join(texts),

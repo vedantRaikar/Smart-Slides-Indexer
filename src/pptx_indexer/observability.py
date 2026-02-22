@@ -1,10 +1,10 @@
 """Observability utilities: logging, metrics, and tracing."""
 
+import json
 import logging
 import sys
-import json
 from datetime import datetime
-from typing import Any, Dict
+from typing import Dict
 
 from pptx_indexer.config import get_config
 

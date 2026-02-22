@@ -5,7 +5,7 @@ A .env file in the project root is automatically loaded.
 """
 
 from functools import lru_cache
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from pydantic import Field
 from pydantic_settings import BaseSettings
@@ -137,6 +137,7 @@ def get_config() -> AppConfig:
 
     Returns:
         AppConfig: Application configuration singleton
+
     """
     return AppConfig()
 

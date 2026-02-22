@@ -18,13 +18,12 @@ Features:
 import hashlib
 import json
 import logging
+import time
 import uuid
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Callable
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import time
+from typing import Any, Callable, Dict, List, Optional
 
 from pptx_indexer.config import get_config
 from pptx_indexer.llm_adapter import LLMAdapter, create_llm_adapter
@@ -102,6 +101,7 @@ class PipelineContext:
         self.graph: Dict = {}
         self.metadata: Dict = {}
         self.errors: List[str] = []
+        self.stages_completed: List[str] = []
 
     def save_artifact(self, name: str, data: Any):
         """Save intermediate artifact."""
@@ -257,9 +257,6 @@ class OCRStage(PipelineStage):
 
             ocr = PaddleOCR(lang=self.languages[0], use_angle_cls=True)
         elif self.ocr_provider == "pytesseract":
-            import pytesseract
-            from PIL import Image
-
             ocr = None
         else:
             logger.warning(f"Unknown OCR provider: {self.ocr_provider}")
@@ -464,8 +461,8 @@ class GraphBuilderStage(PipelineStage):
     def process(self, context: PipelineContext) -> PipelineContext:
         logger.info(f"[{self.name}] Building slide graph")
 
-        from sklearn.metrics.pairwise import cosine_similarity
         import numpy as np
+        from sklearn.metrics.pairwise import cosine_similarity
 
         # Build adjacency based on content similarity
         slide_ids = list(context.embeddings.keys())
@@ -548,7 +545,6 @@ class IndexerWorker:
         job_id: Optional[str] = None,
     ) -> PipelineContext:
         """Process a PPTX file through the full pipeline."""
-
         # Generate job ID if not provided
         job_id = job_id or str(uuid.uuid4())
 
