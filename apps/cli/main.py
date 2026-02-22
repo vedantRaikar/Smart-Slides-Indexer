@@ -8,15 +8,16 @@ Usage:
 """
 
 import argparse
-import json
 import logging
 import sys
 from pathlib import Path
+from dotenv import load_dotenv
 
-from pptx_indexer.config import get_config
-from pptx_indexer.llm_adapter import create_llm_adapter
-from pptx_indexer.vector_store import create_vector_store
+load_dotenv()
+
 from apps.worker.indexing import IndexerWorker
+from pptx_indexer.config import get_config
+from pptx_indexer.vector_store import create_vector_store
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +50,7 @@ def cmd_index(args):
         job_id=args.job_id,
     )
 
-    print(f"\n✓ Indexing complete!")
+    print("\n[+] Indexing complete!")
     print(f"  Slides: {len(context.slides)}")
     print(f"  Sections: {context.metadata.get('total_sections', 0)}")
     print(f"  Output: {output_dir}")

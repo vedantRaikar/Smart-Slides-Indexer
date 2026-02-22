@@ -85,6 +85,7 @@ Repository = "https://github.com/yourusername/pptx-indexer"
 Issues = "https://github.com/yourusername/pptx-indexer/issues"
 
 [project.scripts]
+ssi = "apps.cli.main:main"
 
 [tool.setuptools]
 packages = ["pptx_indexer"]

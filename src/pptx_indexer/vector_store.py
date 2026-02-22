@@ -278,7 +278,7 @@ class QdrantVectorStore(BaseVectorStore):
         top_k: int = 5,
         filter: Optional[Dict] = None,
     ) -> List[SearchResult]:
-        from qdrant_client.models import Filter, FieldCondition, Match
+        from qdrant_client.models import FieldCondition, Filter, Match
 
         search_filter = None
         if filter:
@@ -304,7 +304,7 @@ class QdrantVectorStore(BaseVectorStore):
         ]
 
     def delete(self, ids: List[str]):
-        from qdrant_client.models import Filter, PointIdsList
+        from qdrant_client.models import PointIdsList
 
         self.client.delete(
             collection_name=self.collection_name,

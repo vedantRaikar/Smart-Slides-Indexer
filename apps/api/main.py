@@ -12,14 +12,13 @@ import uuid
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from fastapi import FastAPI, File, HTTPException, UploadFile, BackgroundTasks
-from fastapi.responses import JSONResponse
+from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
 from pydantic import BaseModel
 
+from apps.worker.indexing import IndexerWorker
 from pptx_indexer.config import get_config
 from pptx_indexer.llm_adapter import create_llm_adapter
 from pptx_indexer.vector_store import create_vector_store
-from apps.worker.indexing import IndexerWorker
 
 logger = logging.getLogger(__name__)
 
@@ -120,7 +119,6 @@ async def index_pptx(
     background_tasks: BackgroundTasks = None,
 ):
     """Index a PPTX file."""
-
     # Validate file extension
     if not file.filename.endswith(".pptx"):
         raise HTTPException(status_code=400, detail="File must be .pptx format")
@@ -192,7 +190,6 @@ async def get_job_status(job_id: str):
 @app.post("/search", response_model=SearchResponse)
 async def search_presentation(request: SearchRequest):
     """Semantic search across indexed presentations."""
-
     try:
         # Initialize components
         embedder = create_llm_adapter()  # Will use sentence-transformers

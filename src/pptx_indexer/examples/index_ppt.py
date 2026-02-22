@@ -9,8 +9,9 @@ This demonstrates the full PPTX Indexer workflow:
 """
 
 import os
-from dotenv import load_dotenv
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 from pptx_indexer.config import IndexingConfig
 
@@ -18,12 +19,9 @@ from pptx_indexer.config import IndexingConfig
 from pptx_indexer.pipelines.indexing_pipeline import PPTIndexer
 from pptx_indexer.plugins.default_plugins import (
     ChromaVectorStore,
-    GeminiLLM,
-    OpenAILLM,
     GroqLLM,
-    PytesseractOCR,
-    SentenceTransformerEmbedder,
     PaddleOCR,
+    SentenceTransformerEmbedder,
 )
 
 

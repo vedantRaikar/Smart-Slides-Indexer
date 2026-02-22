@@ -1,7 +1,8 @@
 """Unit tests for core modules."""
 
+from unittest.mock import Mock, patch
+
 import pytest
-from unittest.mock import Mock, patch, MagicMock
 
 
 class TestConfig:
@@ -9,7 +10,7 @@ class TestConfig:
 
     def test_default_config(self):
         """Test default configuration values."""
-        from pptx_indexer.config import get_config, AppConfig
+        from pptx_indexer.config import get_config
 
         config = get_config()
 
@@ -21,6 +22,7 @@ class TestConfig:
     def test_config_from_env(self):
         """Test configuration from environment variables."""
         import os
+
         from pptx_indexer.config import AppConfig
 
         os.environ["LLM__PROVIDER"] = "openai"
@@ -55,9 +57,10 @@ class TestLLMAdapter:
 
     def test_cache_operations(self):
         """Test LLM cache."""
-        from pptx_indexer.llm_adapter import LLMCache
-        import tempfile
         import shutil
+        import tempfile
+
+        from pptx_indexer.llm_adapter import LLMCache
 
         cache_dir = tempfile.mkdtemp()
         try:
@@ -122,8 +125,9 @@ class TestPipelineContext:
 
     def test_artifact_save_load(self):
         """Test artifact persistence."""
-        import tempfile
         import shutil
+        import tempfile
+
         from apps.worker.indexing import PipelineContext
 
         temp_dir = tempfile.mkdtemp()

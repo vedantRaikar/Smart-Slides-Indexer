@@ -11,9 +11,9 @@ import json
 import logging
 import threading
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 from pptx_indexer.config import get_config
 
@@ -308,7 +308,7 @@ class LLMAdapter:
         config = get_config()
 
         self.provider = provider or config.llm.provider
-        self.model = model or config.llm.model
+        self._model = model or config.llm.model
         self.batch_size = batch_size or config.llm.batch_size
 
         # Get API key from environment if not provided
@@ -337,11 +337,11 @@ class LLMAdapter:
             raise ValueError(f"Unknown LLM provider: {self.provider}")
 
         if api_key:
-            return adapter_class(api_key=api_key, model=self.model, **kwargs)
+            return adapter_class(api_key=api_key, model=self._model, **kwargs)
 
         # Fallback to BigPickle without key
         if self.provider == "bigpickle":
-            return BigPickleAdapter(api_key=None, model=self.model)
+            return BigPickleAdapter(api_key=None, model=self._model)
 
         raise ValueError(f"API key required for {self.provider}")
 
@@ -377,6 +377,7 @@ class LLMAdapter:
 
         Returns:
             List of LLMResponse objects
+
         """
         results = []
 
