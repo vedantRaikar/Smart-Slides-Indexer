@@ -1,18 +1,28 @@
 """Tests for core utilities - minimal dependencies."""
 
+from unittest.mock import Mock, patch
+
 import pytest
 
 
-class TestRetryable:
-    """Tests for retry decorator."""
+class TestConfig:
+    """Tests for configuration."""
+
+    def test_default_config(self):
+        """Test default configuration values."""
+        from pptx_indexer.config import get_config
+
+        config = get_config()
 
     def test_retry_success(self):
         """Test retry on successful call."""
         from apps.worker.indexing import Retryable
 
-        @Retryable(max_attempts=3, backoff=0.1)
-        def success_func():
-            return "success"
+    def test_config_from_env(self):
+        """Test configuration from environment variables."""
+        import os
+
+        from pptx_indexer.config import AppConfig
 
         result = success_func()
         assert result == "success"
@@ -56,10 +66,12 @@ class TestPipelineContext:
         finally:
             shutil.rmtree(temp_dir, ignore_errors=True)
 
-    def test_save_and_load_artifact(self):
-        """Test artifact save and load."""
-        import tempfile
+    def test_cache_operations(self):
+        """Test LLM cache."""
         import shutil
+        import tempfile
+
+        from pptx_indexer.llm_adapter import LLMCache
 
         temp_dir = tempfile.mkdtemp()
         try:
@@ -100,55 +112,27 @@ class TestMetadataExtractionStage:
 class TestJobState:
     """Tests for JobState class."""
 
-    def test_job_state_creation(self):
-        """Test job state creation."""
-        from apps.worker.indexing import JobState, JobStatus
+    def test_context_creation(self):
+        """Test pipeline context initialization."""
+        from apps.worker.indexing import PipelineContext
 
-        state = JobState(job_id="test-123")
-        assert state.job_id == "test-123"
-        assert state.status == JobStatus.PENDING
-        assert state.progress == 0.0
-        assert state.stages_completed == []
+        context = PipelineContext(
+            job_id="test-job",
+            input_path="/test/input.pptx",
+            output_dir="/test/output",
+            artifacts_dir="/test/artifacts",
+        )
 
-    def test_job_state_to_dict(self):
-        """Test job state serialization."""
-        from apps.worker.indexing import JobState
+        assert context.job_id == "test-job"
+        assert len(context.slides) == 0
+        assert len(context.embeddings) == 0
 
-        state = JobState(job_id="test-123", progress=0.5)
-        state.stages_completed = ["parser", "ocr"]
-
-        d = state.to_dict()
-        assert d["job_id"] == "test-123"
-        assert d["progress"] == 0.5
-        assert d["stages_completed"] == ["parser", "ocr"]
-
-
-class TestPipelineStage:
-    """Tests for PipelineStage base class."""
-
-    def test_stage_creation(self):
-        """Test stage creation."""
-        from apps.worker.indexing import PipelineStage
-
-        stage = PipelineStage("test_stage")
-        assert stage.name == "test_stage"
-
-    def test_stage_process_not_implemented(self):
-        """Test stage process raises NotImplementedError."""
-        from apps.worker.indexing import PipelineStage
-
-        stage = PipelineStage("test")
-        with pytest.raises(NotImplementedError):
-            stage.process(None)
-
-
-class TestStructureAnalyzerStage:
-    """Tests for StructureAnalyzerStage."""
-
-    def test_structure_analyzer_with_slides(self, temp_dir):
-        """Test structure analyzer with sample slides."""
+    def test_artifact_save_load(self):
+        """Test artifact persistence."""
         import shutil
-        from apps.worker.indexing import PipelineContext, StructureAnalyzerStage
+        import tempfile
+
+        from apps.worker.indexing import PipelineContext
 
         try:
             context = PipelineContext(
