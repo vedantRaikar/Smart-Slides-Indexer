@@ -27,7 +27,9 @@ class BigPickleLLM:
         self.client = None
 
         if not api_key:
-            logger.warning("No API key provided for BigPickleLLM. LLM features will be disabled.")
+            logger.warning(
+                "No API key provided for BigPickleLLM. LLM features will be disabled."
+            )
             return
 
         try:
@@ -176,7 +178,9 @@ class GeminiLLM:
             }
 
             model = self.client.GenerativeModel(self.model)
-            response = model.generate_content(prompt, generation_config=generation_config)
+            response = model.generate_content(
+                prompt, generation_config=generation_config
+            )
 
             return response.text.strip()
         except Exception as e:
@@ -203,7 +207,9 @@ class SentenceTransformerEmbedder:
 
             self.model = SentenceTransformer(model, device=device)
         except ImportError:
-            raise ImportError("sentence-transformers required: pip install sentence-transformers")
+            raise ImportError(
+                "sentence-transformers required: pip install sentence-transformers"
+            )
 
         logger.info(f"Initialized SentenceTransformer: {model}")
 
@@ -229,7 +235,9 @@ class SentenceTransformerEmbedder:
 class ChromaVectorStore:
     """Chroma vector database implementation."""
 
-    def __init__(self, collection_name: str = "pptx_index", persist_dir: str = "./chroma_db"):
+    def __init__(
+        self, collection_name: str = "pptx_index", persist_dir: str = "./chroma_db"
+    ):
         try:
             import chromadb
 
@@ -242,7 +250,9 @@ class ChromaVectorStore:
 
         logger.info(f"Initialized Chroma collection: {collection_name}")
 
-    def add(self, ids: List[str], vectors: List[List[float]], metadatas: List[dict]) -> None:
+    def add(
+        self, ids: List[str], vectors: List[List[float]], metadatas: List[dict]
+    ) -> None:
         """Add vectors to collection."""
         self.collection.add(
             ids=ids,
@@ -251,7 +261,9 @@ class ChromaVectorStore:
         )
         logger.debug(f"Added {len(ids)} vectors to Chroma")
 
-    def search(self, query_vector: List[float], top_k: int = 10, threshold: float = None):
+    def search(
+        self, query_vector: List[float], top_k: int = 10, threshold: float = None
+    ):
         """Search similar vectors."""
         results = self.collection.query(
             query_embeddings=[query_vector],
@@ -296,7 +308,9 @@ class PytesseractOCR:
             self.pytesseract = pytesseract
             self.Image = Image
         except ImportError:
-            raise ImportError("pytesseract and Pillow required: pip install pytesseract pillow")
+            raise ImportError(
+                "pytesseract and Pillow required: pip install pytesseract pillow"
+            )
 
         logger.info(f"Initialized Pytesseract OCR: {lang}")
 

@@ -1,6 +1,7 @@
 """Tests for vector store module - simplified."""
 
 import pytest
+from pathlib import Path
 import json
 import tempfile
 import shutil

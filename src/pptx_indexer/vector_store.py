@@ -184,9 +184,12 @@ class ChromaVectorStore(BaseVectorStore):
                 search_results.append(
                     SearchResult(
                         id=doc_id,
-                        score=1 - results["distances"][0][i],  # Convert distance to similarity
+                        score=1
+                        - results["distances"][0][i],  # Convert distance to similarity
                         text=results["documents"][0][i],
-                        metadata=results["metadatas"][0][i] if results["metadatas"] else {},
+                        metadata=results["metadatas"][0][i]
+                        if results["metadatas"]
+                        else {},
                     )
                 )
 
@@ -267,7 +270,9 @@ class QdrantVectorStore(BaseVectorStore):
                 vector=emb,
                 payload={"text": txt, **(meta or {})},
             )
-            for i, emb, txt, meta in zip(ids, embeddings, texts, metadata or [{}] * len(ids))
+            for i, emb, txt, meta in zip(
+                ids, embeddings, texts, metadata or [{}] * len(ids)
+            )
         ]
 
         self.client.upsert(collection_name=self.collection_name, points=points)
@@ -283,7 +288,10 @@ class QdrantVectorStore(BaseVectorStore):
         search_filter = None
         if filter:
             search_filter = Filter(
-                must=[FieldCondition(key=k, match=Match(value=v)) for k, v in filter.items()]
+                must=[
+                    FieldCondition(key=k, match=Match(value=v))
+                    for k, v in filter.items()
+                ]
             )
 
         results = self.client.search(
@@ -360,7 +368,9 @@ class VectorStoreFactory:
                 persist_directory=kwargs.get(
                     "persist_directory", config.vector_store.persist_directory
                 ),
-                distance_metric=kwargs.get("distance_metric", config.vector_store.distance_metric),
+                distance_metric=kwargs.get(
+                    "distance_metric", config.vector_store.distance_metric
+                ),
             )
         elif provider == "qdrant":
             return store_class(

@@ -2,6 +2,7 @@
 
 import pytest
 import os
+from pathlib import Path
 import tempfile
 from pathlib import Path
 from unittest.mock import Mock, patch
@@ -35,6 +36,7 @@ class TestUtils:
         from pptx_indexer.core.utils import ensure_directory
 
         new_dir = os.path.join(temp_dir, "subdir", "nested")
+        ensure_directory(new_dir)
         result = ensure_directory(new_dir)
         assert os.path.exists(new_dir)
 

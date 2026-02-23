@@ -1,6 +1,7 @@
 """Tests for core modules."""
 
 import pytest
+from unittest.mock import Mock, patch
 from unittest.mock import Mock, MagicMock, patch
 
 

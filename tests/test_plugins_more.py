@@ -1,6 +1,7 @@
 """Tests for plugins - more comprehensive."""
 
 import pytest
+from unittest.mock import Mock
 from unittest.mock import Mock, patch
 
 

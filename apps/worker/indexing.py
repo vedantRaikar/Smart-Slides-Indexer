@@ -148,7 +148,9 @@ class Retryable:
                         )
                         time.sleep(wait_time)
                     else:
-                        logger.error(f"{func.__name__} failed after {self.max_attempts} attempts")
+                        logger.error(
+                            f"{func.__name__} failed after {self.max_attempts} attempts"
+                        )
             raise last_exception
 
         return wrapper
@@ -255,9 +257,9 @@ class OCRStage(PipelineStage):
         if self.ocr_provider == "paddleocr":
             from paddleocr import PaddleOCR
 
-            ocr = PaddleOCR(lang=self.languages[0], use_angle_cls=True)
+            _ocr = PaddleOCR(lang=self.languages[0], use_angle_cls=True)  # noqa: F841
         elif self.ocr_provider == "pytesseract":
-            ocr = None
+            pass  # pytesseract not implemented yet
         else:
             logger.warning(f"Unknown OCR provider: {self.ocr_provider}")
             return context
@@ -381,7 +383,9 @@ JSON:"""
                             # Parse JSON response
                             import re
 
-                            json_match = re.search(r"\{.*\}", responses[j].text, re.DOTALL)
+                            json_match = re.search(
+                                r"\{.*\}", responses[j].text, re.DOTALL
+                            )
                             if json_match:
                                 extracted = json.loads(json_match.group())
                                 slide["keywords"] = extracted.get("keywords", [])
@@ -506,7 +510,9 @@ class GraphBuilderStage(PipelineStage):
             },
         }
 
-        logger.info(f"[{self.name}] Built graph with {len(nodes)} nodes, {len(edges)} edges")
+        logger.info(
+            f"[{self.name}] Built graph with {len(nodes)} nodes, {len(edges)} edges"
+        )
         return context
 
 

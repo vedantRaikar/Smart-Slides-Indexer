@@ -43,7 +43,9 @@ class SlideGraphBuilder:
             Complete SlideGraph
 
         """
-        logger.info(f"Building graph with {len(slides)} slides and {len(sections)} sections")
+        logger.info(
+            f"Building graph with {len(slides)} slides and {len(sections)} sections"
+        )
 
         graph = SlideGraph()
 
@@ -73,7 +75,9 @@ class SlideGraphBuilder:
         graph.document_title = "Presentation Graph"
         graph.total_slides = len(slides)
 
-        logger.info(f"Graph built with {len(graph.nodes)} nodes and {len(graph.edges)} edges")
+        logger.info(
+            f"Graph built with {len(graph.nodes)} nodes and {len(graph.edges)} edges"
+        )
         return graph
 
     def _create_slide_node(self, slide: SlideNode) -> SlideGraphNode:
@@ -141,8 +145,6 @@ class SlideGraphBuilder:
         sections: List[SectionNode],
     ) -> None:
         """Add BELONGS_TO and CONTAINS edges."""
-        slide_map = {s.slide_id: s for s in slides}
-
         for section in sections:
             for slide_id in section.slide_ids:
                 # BELONGS_TO: slide -> section
@@ -175,7 +177,10 @@ class SlideGraphBuilder:
 
         for slide_id1, similarity_dict in similarities.items():
             for slide_id2, similarity_score in similarity_dict.items():
-                if similarity_score >= self.similarity_threshold and slide_id1 != slide_id2:
+                if (
+                    similarity_score >= self.similarity_threshold
+                    and slide_id1 != slide_id2
+                ):
                     # Only add one direction to avoid duplication
                     if slide_id1 < slide_id2:
                         edge = GraphEdge(
@@ -260,7 +265,9 @@ class SlideGraphBuilder:
 
         return scores
 
-    def detect_concepts(self, graph: SlideGraph, min_cluster_size: int = 2) -> Dict[int, List[str]]:
+    def detect_concepts(
+        self, graph: SlideGraph, min_cluster_size: int = 2
+    ) -> Dict[int, List[str]]:
         """Detect concept clusters by analyzing semantic similarity edges."""
         # Build adjacency from semantic edges
         semantic_graph = {}

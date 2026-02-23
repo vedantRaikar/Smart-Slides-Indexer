@@ -136,7 +136,9 @@ class SlideNode:
     next_slide_id: Optional[str] = None
     prev_slide_id: Optional[str] = None
     references: List[str] = field(default_factory=list)  # Slide IDs referenced
-    similar_slides: List[tuple[str, float]] = field(default_factory=list)  # (slide_id, similarity)
+    similar_slides: List[tuple[str, float]] = field(
+        default_factory=list
+    )  # (slide_id, similarity)
 
     def get_full_text(self) -> str:
         """Get all textual content from the slide."""

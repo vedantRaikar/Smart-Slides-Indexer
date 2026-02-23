@@ -1,6 +1,7 @@
 """Tests for core modules - simplified."""
 
 import pytest
+from unittest.mock import Mock
 import os
 import tempfile
 from pathlib import Path

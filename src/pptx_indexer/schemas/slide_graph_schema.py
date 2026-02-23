@@ -99,8 +99,13 @@ class SlideGraph:
         if edge.source_id in self.nodes:
             if edge.edge_type not in self.nodes[edge.source_id].neighbors:
                 self.nodes[edge.source_id].neighbors[edge.edge_type] = []
-            if edge.target_id not in self.nodes[edge.source_id].neighbors[edge.edge_type]:
-                self.nodes[edge.source_id].neighbors[edge.edge_type].append(edge.target_id)
+            if (
+                edge.target_id
+                not in self.nodes[edge.source_id].neighbors[edge.edge_type]
+            ):
+                self.nodes[edge.source_id].neighbors[edge.edge_type].append(
+                    edge.target_id
+                )
 
     def get_node(self, node_id: str) -> Optional[SlideGraphNode]:
         """Retrieve a node."""

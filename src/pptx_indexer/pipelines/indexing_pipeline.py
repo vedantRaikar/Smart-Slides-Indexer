@@ -98,7 +98,9 @@ class PPTIndexer:
 
         logger.info("PPTIndexer initialized")
 
-    def index_file(self, pptx_path: str, output_dir: Optional[str] = None) -> DocumentIndex:
+    def index_file(
+        self, pptx_path: str, output_dir: Optional[str] = None
+    ) -> DocumentIndex:
         """Index a PowerPoint file.
 
         Args:
@@ -177,7 +179,9 @@ class PPTIndexer:
         if output_dir:
             self._export_results(index, graph, output_dir)
 
-        logger.info(f"✓ Indexing complete! Generated DocumentIndex with {len(index.slides)} slides")
+        logger.info(
+            f"✓ Indexing complete! Generated DocumentIndex with {len(index.slides)} slides"
+        )
         return index
 
     def _export_results(

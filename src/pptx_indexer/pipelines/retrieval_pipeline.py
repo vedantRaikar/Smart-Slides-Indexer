@@ -167,7 +167,9 @@ class PPTRetriever:
                 scored_slides[slide_id] = score
 
         # Sort and get top_k
-        top_slides = sorted(scored_slides.items(), key=lambda x: x[1], reverse=True)[:top_k]
+        top_slides = sorted(scored_slides.items(), key=lambda x: x[1], reverse=True)[
+            :top_k
+        ]
 
         results = []
         for slide_id, score in top_slides:
@@ -344,6 +346,8 @@ class PPTRetriever:
 
             for rel_id in related[:context_radius]:
                 if rel_id in self.index.slides:
-                    context["related_slides"].append(self.index.slides[rel_id].to_dict())
+                    context["related_slides"].append(
+                        self.index.slides[rel_id].to_dict()
+                    )
 
         return context

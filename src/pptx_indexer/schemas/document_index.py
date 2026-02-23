@@ -48,12 +48,16 @@ class DocumentIndex:
     concept_to_slides: Dict[str, List[str]] = field(default_factory=dict)
 
     # Cross-references
-    image_references: Dict[str, str] = field(default_factory=dict)  # image_id -> slide_id
+    image_references: Dict[str, str] = field(
+        default_factory=dict
+    )  # image_id -> slide_id
     external_references: Dict[str, str] = field(default_factory=dict)
 
     # Similarity matrices
     slide_similarity_matrix: Dict[str, Dict[str, float]] = field(default_factory=dict)
-    concept_clusters: Dict[int, List[str]] = field(default_factory=dict)  # cluster_id -> slide_ids
+    concept_clusters: Dict[int, List[str]] = field(
+        default_factory=dict
+    )  # cluster_id -> slide_ids
 
     # Statistics
     stats: DocumentStats = field(default_factory=DocumentStats)
@@ -131,7 +135,9 @@ class DocumentIndex:
                 "total_topics": len(self.topic_to_slides),
             },
             "slides": {sid: slide.to_dict() for sid, slide in self.slides.items()},
-            "sections": {sid: section.to_dict() for sid, section in self.sections.items()},
+            "sections": {
+                sid: section.to_dict() for sid, section in self.sections.items()
+            },
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }

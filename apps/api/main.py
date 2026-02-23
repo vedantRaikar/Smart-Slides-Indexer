@@ -192,7 +192,7 @@ async def search_presentation(request: SearchRequest):
     """Semantic search across indexed presentations."""
     try:
         # Initialize components
-        embedder = create_llm_adapter()  # Will use sentence-transformers
+        create_llm_adapter()  # Will use sentence-transformers
         vector_store = create_vector_store(
             collection_name=request.collection or config.vector_store.collection_name,
         )

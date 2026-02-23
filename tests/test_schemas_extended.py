@@ -9,6 +9,7 @@ class TestSlideNode:
 
     def test_slide_node_creation(self):
         """Test SlideNode creation."""
+        from pptx_indexer.schemas.slide_node import SlideNode
         from pptx_indexer.schemas.slide_node import SlideNode, ContentType
 
         node = SlideNode(

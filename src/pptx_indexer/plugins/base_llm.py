@@ -186,7 +186,9 @@ class BaseGraphDB(ABC):
     """Base class for graph database implementations."""
 
     @abstractmethod
-    def add_node(self, node_id: str, node_type: str, properties: Dict[str, Any]) -> None:
+    def add_node(
+        self, node_id: str, node_type: str, properties: Dict[str, Any]
+    ) -> None:
         """Add a node to the graph."""
         raise NotImplementedError
 

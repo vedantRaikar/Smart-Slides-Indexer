@@ -90,11 +90,15 @@ def main():
     print(f"Total slides: {index.stats.total_slides}")
     print(f"Total sections: {index.stats.total_sections}")
     print(f"Total images: {index.stats.total_images}")
-    print(f"Estimated reading time: {index.stats.estimated_reading_time_minutes} minutes")
+    print(
+        f"Estimated reading time: {index.stats.estimated_reading_time_minutes} minutes"
+    )
 
     print("\nTop keywords:")
     for keyword, count in sorted(
-        [(k, len(v)) for k, v in index.keyword_to_slides.items()], key=lambda x: x[1], reverse=True
+        [(k, len(v)) for k, v in index.keyword_to_slides.items()],
+        key=lambda x: x[1],
+        reverse=True,
     )[:10]:
         print(f"  - {keyword}: {count} slides")
 

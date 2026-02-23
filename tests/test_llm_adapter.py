@@ -1,6 +1,7 @@
 """Tests for LLM adapter module - simplified."""
 
 import pytest
+from pathlib import Path
 import json
 import os
 import tempfile
