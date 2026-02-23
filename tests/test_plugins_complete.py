@@ -1,7 +1,6 @@
 """Tests for plugins - simplified."""
 
 import pytest
-from unittest.mock import Mock, patch, MagicMock
 
 
 class TestLLMImplementations:

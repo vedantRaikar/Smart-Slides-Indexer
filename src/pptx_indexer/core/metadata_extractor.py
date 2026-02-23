@@ -53,7 +53,9 @@ class MetadataExtractor:
         except Exception as e:
             logger.error(f"Failed to extract metadata for slide {slide.slide_id}: {e}")
 
-    def extract_section_metadata(self, section: SectionNode, slides: List[SlideNode]) -> None:
+    def extract_section_metadata(
+        self, section: SectionNode, slides: List[SlideNode]
+    ) -> None:
         """Extract metadata for a section."""
         try:
             # Collect content from all slides in section
@@ -232,4 +234,6 @@ class MetadataExtractor:
         try:
             self.extract_slide_metadata(slide)
         except Exception as e:
-            logger.warning(f"Skipped metadata extraction for slide {slide.slide_id}: {e}")
+            logger.warning(
+                f"Skipped metadata extraction for slide {slide.slide_id}: {e}"
+            )

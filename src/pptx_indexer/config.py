@@ -29,7 +29,9 @@ class LLMConfig(BaseSettings):
 class EmbedderConfig(BaseSettings):
     """Embedder configuration."""
 
-    provider: str = Field(default="sentence-transformers", description="Embedder provider")
+    provider: str = Field(
+        default="sentence-transformers", description="Embedder provider"
+    )
     model: str = Field(default="all-MiniLM-L6-v2", description="Embedding model")
     batch_size: int = Field(default=32, description="Batch size for embeddings")
     cache_enabled: bool = Field(default=True, description="Enable embedding caching")
@@ -42,7 +44,9 @@ class VectorStoreConfig(BaseSettings):
     provider: str = Field(
         default="chroma", description="Vector store provider: chroma, qdrant, pinecone"
     )
-    collection_name: str = Field(default="slides", description="Default collection name")
+    collection_name: str = Field(
+        default="slides", description="Default collection name"
+    )
     persist_directory: Optional[str] = Field(
         default="./data/chroma", description="Chroma persist directory"
     )
@@ -52,7 +56,9 @@ class VectorStoreConfig(BaseSettings):
 class OCRConfig(BaseSettings):
     """OCR configuration."""
 
-    provider: str = Field(default="paddleocr", description="OCR provider: paddleocr, pytesseract")
+    provider: str = Field(
+        default="paddleocr", description="OCR provider: paddleocr, pytesseract"
+    )
     languages: List[str] = Field(default=["en"], description="OCR languages")
     enabled: bool = Field(default=True, description="Enable OCR processing")
     use_angle_cls: bool = Field(default=True, description="Use angle classification")
@@ -65,7 +71,9 @@ class WorkerConfig(BaseSettings):
     retry_attempts: int = Field(default=3, description="Max retry attempts")
     retry_backoff: float = Field(default=1.0, description="Exponential backoff base")
     job_timeout: int = Field(default=600, description="Job timeout in seconds")
-    idempotency_enabled: bool = Field(default=True, description="Enable idempotent processing")
+    idempotency_enabled: bool = Field(
+        default=True, description="Enable idempotent processing"
+    )
     artifacts_path: str = Field(
         default="./data/artifacts", description="Intermediate artifacts path"
     )
@@ -83,9 +91,13 @@ class LoggingConfig(BaseSettings):
 class MetricsConfig(BaseSettings):
     """Observability configuration."""
 
-    enable_prometheus: bool = Field(default=True, description="Enable Prometheus metrics")
+    enable_prometheus: bool = Field(
+        default=True, description="Enable Prometheus metrics"
+    )
     prometheus_port: int = Field(default=9090, description="Prometheus metrics port")
-    enable_tracing: bool = Field(default=False, description="Enable OpenTelemetry tracing")
+    enable_tracing: bool = Field(
+        default=False, description="Enable OpenTelemetry tracing"
+    )
     tracing_endpoint: Optional[str] = Field(default=None, description="OTLP endpoint")
 
 
@@ -103,9 +115,12 @@ class AppConfig(BaseSettings):
     """Main application configuration."""
 
     # Core settings
-    app_name: str = Field(default="smart-slides-indexer", description="Application name")
+    app_name: str = Field(
+        default="smart-slides-indexer", description="Application name"
+    )
     environment: str = Field(
-        default="development", description="Environment: development, staging, production"
+        default="development",
+        description="Environment: development, staging, production",
     )
     debug: bool = Field(default=False, description="Debug mode")
 

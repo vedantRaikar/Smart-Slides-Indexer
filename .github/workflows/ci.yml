@@ -25,13 +25,13 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install black flake8 mypy isort
+          pip install black ruff mypy isort
           
       - name: Check black formatting
         run: black --check .
         
-      - name: Check flake8
-        run: flake8 . --max-line-length=100 --ignore=E501,W503
+      - name: Check ruff
+        run: ruff check .
         
       - name: Check isort
         run: isort --check-only --diff .

@@ -1,10 +1,7 @@
 """Tests for core modules - more comprehensive."""
 
 import pytest
-import os
-import tempfile
-from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 
 
 class TestParserMore:

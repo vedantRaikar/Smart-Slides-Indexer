@@ -139,7 +139,9 @@ def main():
 
         print(f"\nFound {len(results)} relevant slides:")
         for r in results:
-            print(f"  - Slide {r['slide_number']}: {r['title']} (score: {r['score']:.3f})")
+            print(
+                f"  - Slide {r['slide_number']}: {r['title']} (score: {r['score']:.3f})"
+            )
 
         if llm is not None:
             print("\nGenerating answer...")

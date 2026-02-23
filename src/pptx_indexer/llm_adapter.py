@@ -135,7 +135,9 @@ class OpenAIAdapter(BaseLLMAdapter):
             return LLMResponse(
                 text=response.choices[0].message.content.strip(),
                 model=self._model,
-                tokens_used=response.usage.total_tokens if hasattr(response, "usage") else None,
+                tokens_used=response.usage.total_tokens
+                if hasattr(response, "usage")
+                else None,
             )
         except Exception as e:
             logger.error(f"OpenAI generation failed: {e}")
@@ -174,7 +176,9 @@ class GroqAdapter(BaseLLMAdapter):
             return LLMResponse(
                 text=response.choices[0].message.content.strip(),
                 model=self._model,
-                tokens_used=response.usage.total_tokens if hasattr(response, "usage") else None,
+                tokens_used=response.usage.total_tokens
+                if hasattr(response, "usage")
+                else None,
             )
         except Exception as e:
             logger.error(f"Groq generation failed: {e}")

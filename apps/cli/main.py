@@ -15,9 +15,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from apps.worker.indexing import IndexerWorker
-from pptx_indexer.config import get_config
-from pptx_indexer.vector_store import create_vector_store
+from apps.worker.indexing import IndexerWorker  # noqa: E402
+from pptx_indexer.config import get_config  # noqa: E402
+from pptx_indexer.vector_store import create_vector_store  # noqa: E402
 
 logger = logging.getLogger(__name__)
 

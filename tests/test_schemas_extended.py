@@ -1,7 +1,6 @@
 """Tests for schema modules - simplified."""
 
 import pytest
-from unittest.mock import Mock, patch
 
 
 class TestSlideNode:
@@ -9,7 +8,7 @@ class TestSlideNode:
 
     def test_slide_node_creation(self):
         """Test SlideNode creation."""
-        from pptx_indexer.schemas.slide_node import SlideNode, ContentType
+        from pptx_indexer.schemas.slide_node import SlideNode
 
         node = SlideNode(
             slide_number=1,

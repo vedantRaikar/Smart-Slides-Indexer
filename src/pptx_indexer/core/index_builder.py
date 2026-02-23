@@ -6,7 +6,12 @@ import json
 import logging
 from typing import List, Optional
 
-from ..plugins.base_llm import BaseEmbedder, BaseImageCaptioner, BaseOCR, BaseVectorStore
+from ..plugins.base_llm import (
+    BaseEmbedder,
+    BaseImageCaptioner,
+    BaseOCR,
+    BaseVectorStore,
+)
 from ..schemas.document_index import DocumentIndex
 from ..schemas.slide_graph_schema import SlideGraph
 from ..schemas.slide_node import SectionNode, SlideNode
@@ -109,7 +114,9 @@ class IndexBuilder:
         if section_texts:
             section_embeddings = self.embedder.batch_embed(section_texts)
 
-            for (section_id, section), embedding in zip(index.sections.items(), section_embeddings):
+            for (section_id, section), embedding in zip(
+                index.sections.items(), section_embeddings
+            ):
                 section.embedding = embedding
                 index.section_embeddings[section_id] = embedding
 
@@ -158,7 +165,9 @@ class IndexBuilder:
 
         logger.debug(f"Stored {len(slide_ids) + len(section_ids)} vectors")
 
-    def _compute_statistics(self, index: DocumentIndex, slides: List[SlideNode]) -> None:
+    def _compute_statistics(
+        self, index: DocumentIndex, slides: List[SlideNode]
+    ) -> None:
         """Compute document statistics."""
         stats = index.stats
         stats.total_slides = len(index.slides)
@@ -191,7 +200,9 @@ class IndexBuilder:
                     try:
                         ocr_text = self.ocr.extract_text(image.image_path)
                         image.ocr_text = ocr_text
-                        logger.debug(f"OCR for image {image.image_id}: {len(ocr_text)} chars")
+                        logger.debug(
+                            f"OCR for image {image.image_id}: {len(ocr_text)} chars"
+                        )
                     except Exception as e:
                         logger.warning(f"OCR failed for {image.image_path}: {e}")
 

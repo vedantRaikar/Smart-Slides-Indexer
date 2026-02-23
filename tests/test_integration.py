@@ -55,7 +55,6 @@ class TestCLICommands:
     def test_cmd_index_file_not_found(self):
         """Test index command with missing file."""
         from apps.cli.main import cmd_index
-        import sys
 
         args = Mock()
         args.input = "/nonexistent/file.pptx"

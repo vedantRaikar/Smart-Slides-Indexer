@@ -70,7 +70,9 @@ class PPTParser:
         slide = SlideNode(slide_number=slide_number)
 
         # Extract layout type
-        slide.layout_type = prs_slide.slide_layout.name if prs_slide.slide_layout else "default"
+        slide.layout_type = (
+            prs_slide.slide_layout.name if prs_slide.slide_layout else "default"
+        )
 
         # Process all shapes on slide
         for shape in prs_slide.shapes:
@@ -202,7 +204,9 @@ class PPTParser:
     def parse_slide_metadata(self, prs_slide) -> Dict[str, Any]:
         """Extract metadata about slide layout and structure."""
         return {
-            "layout_name": prs_slide.slide_layout.name if prs_slide.slide_layout else "default",
+            "layout_name": prs_slide.slide_layout.name
+            if prs_slide.slide_layout
+            else "default",
             "has_notes": prs_slide.has_notes_slide,
             "shape_count": len(prs_slide.shapes),
         }

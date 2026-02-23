@@ -23,7 +23,9 @@ class StructureAnalyzer:
     def __init__(self, similarity_threshold: float = 0.6):
         self.similarity_threshold = similarity_threshold
 
-    def analyze(self, slides: List[SlideNode]) -> Tuple[List[SectionNode], Dict[str, List[str]]]:
+    def analyze(
+        self, slides: List[SlideNode]
+    ) -> Tuple[List[SectionNode], Dict[str, List[str]]]:
         """Analyze slides to create section hierarchy.
 
         Returns:
@@ -203,7 +205,11 @@ class StructureAnalyzer:
                         keyword_slides[word].append(slide.slide_id)
 
         # Filter to only repeated themes (appear in 3+ slides)
-        repeated = {theme: slides for theme, slides in keyword_slides.items() if len(slides) >= 3}
+        repeated = {
+            theme: slides
+            for theme, slides in keyword_slides.items()
+            if len(slides) >= 3
+        }
 
         return repeated
 
@@ -263,8 +269,6 @@ class StructureAnalyzer:
         """Compute similarity matrix between slides.
         Can use embeddings if provided, otherwise fallback to keyword overlap.
         """
-        similarities = {s.slide_id: {} for s in slides}
-
         if embeddings:
             # Use embeddings for similarity
             return self._compute_embedding_similarity(embeddings)
@@ -272,7 +276,9 @@ class StructureAnalyzer:
             # Use keyword overlap
             return self._compute_keyword_similarity(slides)
 
-    def _compute_keyword_similarity(self, slides: List[SlideNode]) -> Dict[str, Dict[str, float]]:
+    def _compute_keyword_similarity(
+        self, slides: List[SlideNode]
+    ) -> Dict[str, Dict[str, float]]:
         """Compute similarity based on keyword overlap."""
         similarities = {}
 
@@ -347,18 +353,25 @@ class StructureAnalyzer:
 
         return transitions
 
-    def _detect_transition(self, prev_slide: SlideNode, curr_slide: SlideNode) -> Optional[str]:
+    def _detect_transition(
+        self, prev_slide: SlideNode, curr_slide: SlideNode
+    ) -> Optional[str]:
         """Detect transition type between slides."""
         # Transition to section title
         if self._is_section_title(curr_slide):
             return "section_break"
 
         # Return from section title
-        if self._is_section_title(prev_slide) and not self._is_section_title(curr_slide):
+        if self._is_section_title(prev_slide) and not self._is_section_title(
+            curr_slide
+        ):
             return "section_start"
 
         # Conclusion slides
-        if any(word in curr_slide.title.lower() for word in ["conclusion", "summary", "recap"]):
+        if any(
+            word in curr_slide.title.lower()
+            for word in ["conclusion", "summary", "recap"]
+        ):
             return "conclusion"
 
         return None

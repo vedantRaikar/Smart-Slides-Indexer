@@ -1,7 +1,7 @@
 """Tests for core modules."""
 
 import pytest
-from unittest.mock import Mock, MagicMock, patch
+from unittest.mock import Mock, patch
 
 
 class TestParser:
