@@ -2,6 +2,10 @@
 
 import pytest
 from unittest.mock import Mock, patch
+import os
+import tempfile
+from pathlib import Path
+from unittest.mock import Mock, patch, MagicMock
 
 
 class TestParserMore:

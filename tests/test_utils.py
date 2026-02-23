@@ -3,6 +3,9 @@
 import pytest
 import os
 from pathlib import Path
+import tempfile
+from pathlib import Path
+from unittest.mock import Mock, patch
 
 
 class TestUtils:
@@ -34,6 +37,7 @@ class TestUtils:
 
         new_dir = os.path.join(temp_dir, "subdir", "nested")
         ensure_directory(new_dir)
+        result = ensure_directory(new_dir)
         assert os.path.exists(new_dir)
 
     def test_validate_pptx_file_valid(self, temp_dir):

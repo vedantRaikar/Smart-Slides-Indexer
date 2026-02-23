@@ -1,6 +1,7 @@
 """Tests for plugins and default implementations."""
 
 import pytest
+from unittest.mock import Mock, patch, MagicMock
 
 
 class TestBaseLLM:
